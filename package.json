@@ -1,0 +1,29 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.9.3"
+  },
+  "homepage": "https://github.com/worksimpli/Chonky",
+  "author": {
+    "name": "abhijeet1891"
+  },
+  "resolutions": {
+    "**/typescript": "4.2.2",
+    "**/immer": "8.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/worksimpli/Chonky.git"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/worksimpli/Chonky/issues"
+  }
+}
