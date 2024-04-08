@@ -15,10 +15,11 @@ import { makeGlobalChonkyStyles } from '../../util/styles';
 export interface FileListEmptyProps {
     width: number;
     height: number;
+    nothingToShowLabel: string;
 }
 
 export const FileListEmpty: React.FC<FileListEmptyProps> = props => {
-    const { width, height } = props;
+    const { width, height,nothingToShowLabel } = props;
     const classes = useStyles();
     const ChonkyIcon = useContext(ChonkyIconContext);
     const style: CSSProperties = {
@@ -36,7 +37,7 @@ export const FileListEmpty: React.FC<FileListEmptyProps> = props => {
         <div className={classes.fileListEmpty} style={style}>
             <div className={classes.fileListEmptyContent}>
                 <ChonkyIcon icon={ChonkyIconName.folderOpen} />
-                &nbsp; {emptyString}
+                &nbsp; {nothingToShowLabel}
             </div>
         </div>
     );

@@ -79,6 +79,7 @@ const App = () => {
                 listHeader={{name:"",location:"",modified:"",sharing:""}}
                 moreToolAction={<div>moreToolAction</div>}
                 onFileDoubleClickHandler={<div>onFileDoubleClickHandler</div>}
+                nothingToShowLabel="loading or please wait..."
             />
         </div>
     );

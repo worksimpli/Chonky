@@ -200,4 +200,5 @@ export interface FileBrowserProps {
     onFileDoubleClickHandler?:{
         dblRowobj: AnyFunction;
     };
+    nothingToShowLabel: string;
 }

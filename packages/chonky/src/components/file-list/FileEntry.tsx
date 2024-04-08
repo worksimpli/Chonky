@@ -42,6 +42,7 @@ export interface SmartFileEntryProps {
     onFileDoubleClickHandler?:{
         dblRowobj: AnyFunction;
     };
+    nothingToShowLabel: string;
 }
 
 const disabledDndState: DndEntryState = {
@@ -51,7 +52,7 @@ const disabledDndState: DndEntryState = {
 };
 
 export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
-    ({ fileId, displayIndex, fileViewMode, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler }) => {
+    ({ fileId, displayIndex, fileViewMode, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel }) => {
         const classes = useStyles();
 
         // Basic properties
@@ -79,7 +80,7 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
             tags,
             sharedOrPrivate,
             listHeader,
-            moreToolAction,esignStatus,onFileDoubleClickHandler
+            moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel
         };
 
         let EntryComponent: React.FC<FileEntryProps>;
