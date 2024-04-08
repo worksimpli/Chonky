@@ -37,10 +37,11 @@ export interface FileListListProps {
     onFileDoubleClickHandler?:{
         dblRowobj: AnyFunction;
     };
+    nothingToShowLabel: string;
 }
 
 export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
-    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler } = props;
+    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel } = props;
 
     const viewConfig = useSelector(selectFileViewConfig);
 
@@ -72,6 +73,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
                         moreToolAction={moreToolAction}
                         esignStatus={esignStatus}
                         onFileDoubleClickHandler={onFileDoubleClickHandler}
+                        nothingToShowLabel={nothingToShowLabel}
                     />
                 </div>
             );

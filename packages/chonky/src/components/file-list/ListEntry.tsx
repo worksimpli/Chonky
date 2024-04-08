@@ -20,7 +20,7 @@ interface StyleState {
 }
 
 export const ListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler }) => {
+    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
 

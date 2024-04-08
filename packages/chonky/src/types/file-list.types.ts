@@ -32,4 +32,5 @@ export interface FileEntryProps {
     onFileDoubleClickHandler?:{
         dblRowobj: AnyFunction;
     };
+    nothingToShowLabel: string;
 }
