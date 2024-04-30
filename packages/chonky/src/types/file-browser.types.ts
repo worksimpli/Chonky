@@ -201,4 +201,5 @@ export interface FileBrowserProps {
         dblRowobj: AnyFunction;
     };
     nothingToShowLabel: string;
+    conversionInProgress?: React.ReactElement<any, any>;
 }

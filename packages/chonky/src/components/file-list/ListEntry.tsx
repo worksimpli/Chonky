@@ -20,7 +20,7 @@ interface StyleState {
 }
 
 export const ListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler }) => {
+    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
 
@@ -83,6 +83,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                         <span className="list-file-search-tooltip" data-chonky-file-id={file?.id ? file.id: ''}>{file?.folderPath}</span>
                     </div>
                 ): null}
+                {!file?.isDocConverted && conversionInProgress}
                 <div className={classes.listFileEntryProperty} data-chonky-file-id={file?.id ? file.id: ''}>
                     {file ? (
                         fileModDateString ?? <span>—</span>

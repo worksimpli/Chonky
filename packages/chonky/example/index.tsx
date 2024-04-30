@@ -80,6 +80,7 @@ const App = () => {
                 moreToolAction={<div>moreToolAction</div>}
                 onFileDoubleClickHandler={<div>onFileDoubleClickHandler</div>}
                 nothingToShowLabel="loading or please wait..."
+                conversionInProgress={<div></div>}
             />
         </div>
     );
