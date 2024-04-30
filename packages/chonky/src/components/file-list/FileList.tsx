@@ -44,7 +44,8 @@ export interface FileListProps {
     onFileDoubleClickHandler?:{
         dblRowobj: AnyFunction;
     };
-    nothingToShowLabel: string
+    nothingToShowLabel: string,
+    conversionInProgress?: React.ReactElement<any, any>;
 }
 
 interface StyleState {
@@ -66,7 +67,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
     const localClasses = useLocalStyles(styleState);
     const classes = useStyles(viewConfig);
     const headerClasses =useHeaderStyles();
-    const { onScroll, fileListStyle, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel } = props;
+    const { onScroll, fileListStyle, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress } = props;
 
     // In Chonky v0.x, this field was user-configurable. In Chonky v1.x+, we hardcode
     // this to `true` to simplify configuration. Users can just wrap Chonky in their
@@ -115,6 +116,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
                         esignStatus={esignStatus}
                         onFileDoubleClickHandler={onFileDoubleClickHandler}
                         nothingToShowLabel={nothingToShowLabel}
+                        conversionInProgress={conversionInProgress}
                     />
                    </div>
                     </>

@@ -33,4 +33,5 @@ export interface FileEntryProps {
         dblRowobj: AnyFunction;
     };
     nothingToShowLabel: string;
+    conversionInProgress?: React.ReactElement<any, any>;
 }
