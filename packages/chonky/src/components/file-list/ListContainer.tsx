@@ -39,10 +39,11 @@ export interface FileListListProps {
     };
     nothingToShowLabel: string;
     conversionInProgress?: React.ReactElement<any, any>;
+    conversionFailed?: React.ReactElement<any, any>;
 }
 
 export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
-    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress } = props;
+    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed } = props;
 
     const viewConfig = useSelector(selectFileViewConfig);
 
@@ -76,6 +77,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
                         onFileDoubleClickHandler={onFileDoubleClickHandler}
                         nothingToShowLabel={nothingToShowLabel}
                         conversionInProgress={conversionInProgress}
+                        conversionFailed={conversionFailed}
                     />
                 </div>
             );

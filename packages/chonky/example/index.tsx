@@ -81,6 +81,7 @@ const App = () => {
                 onFileDoubleClickHandler={<div>onFileDoubleClickHandler</div>}
                 nothingToShowLabel="loading or please wait..."
                 conversionInProgress={<div></div>}
+                conversionFailed={<div></div>}
             />
         </div>
     );

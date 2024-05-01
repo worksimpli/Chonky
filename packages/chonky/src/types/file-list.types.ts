@@ -34,4 +34,5 @@ export interface FileEntryProps {
     };
     nothingToShowLabel: string;
     conversionInProgress?: React.ReactElement<any, any>;
+    conversionFailed?: React.ReactElement<any, any>;
 }
