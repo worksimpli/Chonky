@@ -76,6 +76,8 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                     // title={file ? file.name : undefined} 
                     data-chonky-file-id={file?.id ? file.id: ''}>
                     <FileEntryName file={file} tags={tags} esignStatus={esignStatus}/>
+                    {file?.isDocConverted && conversionInProgress}
+                    {file?.isConversionFailed && conversionFailed}
                 </div>
                 {file?.isSearchResults && file?.folderPath ? (
                     <div className={classes.listFileSearch} data-chonky-file-id={file?.id ? file.id: ''}>
@@ -83,8 +85,8 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                         <span className="list-file-search-tooltip" data-chonky-file-id={file?.id ? file.id: ''}>{file?.folderPath}</span>
                     </div>
                 ): null}
-                {file?.isDocConverted && conversionInProgress}
-                {file?.isConversionFailed && conversionFailed}
+                {/* {file?.isDocConverted && conversionInProgress}
+                {file?.isConversionFailed && conversionFailed} */}
                 <div className={classes.listFileEntryProperty} data-chonky-file-id={file?.id ? file.id: ''}>
                     {file ? (
                         fileModDateString ?? <span>—</span>
