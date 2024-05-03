@@ -16,10 +16,12 @@ export interface FileEntryNameProps {
     className?: string;
     tags?: React.ReactElement<any, any>;
     esignStatus?: React.ReactElement<any, any>;
+    conversionInProgress?: React.ReactElement<any, any>;
+    conversionFailed?: React.ReactElement<any, any>;
     
 }
 
-export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, className }) => {
+export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, className,conversionInProgress,conversionFailed }) => {
     const modifierIconComponents = useModifierIconComponents(file);
     const fileNameComponent = useFileNameComponent(file);
     const fileTags = file?.tags?.split(",").filter((d:string) => Boolean(d));
@@ -33,7 +35,7 @@ export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, c
                 <span className={classes.modifierIcons} data-chonky-file-id={file?.id ? file.id: ''}>{modifierIconComponents}</span>
             )}
             {fileNameComponent}
-            {fileTags?.length ? (
+            {fileTags?.length ? (   
                 <div className="chonky-tags" data-chonky-file-id={file?.id ? file.id: ''}>
                     {fileTags?.map((tag:string, index: number) => (
                         <span className={'tags-'+ index.toString()+ '-' + tag} key={index.toString()+tag} data-chonky-file-id={file?.id ? file.id: ''}>{tag}</span>
@@ -43,6 +45,8 @@ export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, c
              {esignStatus != "" ? (  <div className="chonky-esign-status" data-chonky-file-id={file?.id ? file.id: ''}>
              {esignStatus}
                 </div>) : null}
+                {file?.isDocConverted && conversionInProgress}
+                {file?.isConversionFailed && conversionFailed}
               
         </span>
     );
