@@ -82,6 +82,7 @@ const App = () => {
                 nothingToShowLabel="loading or please wait..."
                 conversionInProgress={<div></div>}
                 conversionFailed={<div></div>}
+                conversionCompleted={<div></div>}
             />
         </div>
     );
