@@ -83,6 +83,7 @@ const App = () => {
                 conversionInProgress={<div></div>}
                 conversionFailed={<div></div>}
                 conversionCompleted={<div></div>}
+                translateInProgress={<div></div>}
             />
         </div>
     );
