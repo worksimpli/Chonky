@@ -49,6 +49,7 @@ export interface FileListProps {
     conversionFailed?: React.ReactElement<any, any>;
     conversionCompleted?: React.ReactElement<any, any>;
     translateInProgress?: React.ReactElement<any, any>;
+    translationFailed?: React.ReactElement<any, any>;
 }
 
 interface StyleState {
@@ -70,7 +71,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
     const localClasses = useLocalStyles(styleState);
     const classes = useStyles(viewConfig);
     const headerClasses =useHeaderStyles();
-    const { onScroll, fileListStyle, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress } = props;
+    const { onScroll, fileListStyle, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed } = props;
 
     // In Chonky v0.x, this field was user-configurable. In Chonky v1.x+, we hardcode
     // this to `true` to simplify configuration. Users can just wrap Chonky in their
@@ -123,6 +124,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
                         conversionFailed={conversionFailed}
                         conversionCompleted={conversionCompleted}
                         translateInProgress={translateInProgress}
+                        translationFailed={translationFailed}
                     />
                    </div>
                     </>

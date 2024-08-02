@@ -15,7 +15,7 @@ import { FileToolbar } from './FileToolbar';
 
 export const FullFileBrowser = React.memo(
     React.forwardRef<FileBrowserHandle, FileBrowserProps>((props, ref) => {
-        const { onScroll, fileListStyle, activeStar = <></>, deactivateStar = <></>, tags = <></>,esignStatus = <></>, sharedOrPrivate = {sharedText: "", privateText: ""},listHeader = {name:"",location:"",modified:"",sharing:""},moreToolAction=<></>,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress=<></>,conversionFailed=<></>,conversionCompleted=<></>,translateInProgress=<></>} = props;
+        const { onScroll, fileListStyle, activeStar = <></>, deactivateStar = <></>, tags = <></>,esignStatus = <></>, sharedOrPrivate = {sharedText: "", privateText: ""},listHeader = {name:"",location:"",modified:"",sharing:""},moreToolAction=<></>,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress=<></>,conversionFailed=<></>,conversionCompleted=<></>,translateInProgress=<></>,translationFailed=<></>} = props;
         return (
             <FileBrowser ref={ref} {...props}>
                 <FileNavbar />
@@ -36,6 +36,7 @@ export const FullFileBrowser = React.memo(
                     conversionFailed={conversionFailed}
                     conversionCompleted={conversionCompleted}
                     translateInProgress={translateInProgress}
+                    translationFailed={translationFailed}
                 />
                 <FileContextMenu />
             </FileBrowser>
