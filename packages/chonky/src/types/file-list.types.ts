@@ -36,4 +36,5 @@ export interface FileEntryProps {
     conversionInProgress?: React.ReactElement<any, any>;
     conversionFailed?: React.ReactElement<any, any>;
     conversionCompleted?: React.ReactElement<any, any>;
+    translateInProgress?: React.ReactElement<any, any>;
 }
