@@ -43,7 +43,7 @@ export interface FileListListProps {
     conversionCompleted?: React.ReactElement<any, any>;
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
-    multipleSelect?: boolean;
+    multipleSelect?: React.ReactElement<any, any>;
 }
 
 export const ListContainer: React.FC<FileListListProps> = React.memo(props => {

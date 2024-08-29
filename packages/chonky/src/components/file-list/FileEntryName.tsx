@@ -21,7 +21,7 @@ export interface FileEntryNameProps {
     conversionCompleted?: React.ReactElement<any, any>;
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
-    multipleSelect?: boolean;
+    multipleSelect?: React.ReactElement<any, any>;
     
 }
 
