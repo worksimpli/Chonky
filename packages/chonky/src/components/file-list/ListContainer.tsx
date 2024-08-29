@@ -43,10 +43,11 @@ export interface FileListListProps {
     conversionCompleted?: React.ReactElement<any, any>;
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
+    multipleSelect?: boolean;
 }
 
 export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
-    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed } = props;
+    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect } = props;
 
     const viewConfig = useSelector(selectFileViewConfig);
 
@@ -84,6 +85,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
                         conversionCompleted={conversionCompleted}
                         translateInProgress={translateInProgress}
                         translationFailed={translationFailed}
+                        multipleSelect={multipleSelect}
                     />
                 </div>
             );

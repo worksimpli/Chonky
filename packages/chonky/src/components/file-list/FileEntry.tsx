@@ -48,6 +48,7 @@ export interface SmartFileEntryProps {
     conversionCompleted?: React.ReactElement<any, any>;
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
+    multipleSelect?: boolean;
 }
 
 const disabledDndState: DndEntryState = {
@@ -57,7 +58,7 @@ const disabledDndState: DndEntryState = {
 };
 
 export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
-    ({ fileId, displayIndex, fileViewMode, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed }) => {
+    ({ fileId, displayIndex, fileViewMode, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect }) => {
         const classes = useStyles();
 
         // Basic properties
@@ -66,7 +67,7 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
         const dndDisabled = useSelector(selectIsDnDDisabled);
 
         // Clickable wrapper properties
-        const fileClickHandlers = useFileClickHandlers(file, displayIndex);
+        const fileClickHandlers = useFileClickHandlers(file, displayIndex, multipleSelect);
         const [focused, setFocused] = useState(false);
         const clickableWrapperProps: ClickableWrapperProps = {
             wrapperTag: 'div',
@@ -85,7 +86,7 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
             tags,
             sharedOrPrivate,
             listHeader,
-            moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed
+            moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect
         };
 
         let EntryComponent: React.FC<FileEntryProps>;

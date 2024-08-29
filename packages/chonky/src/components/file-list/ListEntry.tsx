@@ -20,7 +20,7 @@ interface StyleState {
 }
 
 export const ListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed }) => {
+    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
 
@@ -75,7 +75,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                     className={classes.listFileEntryName}
                     // title={file ? file.name : undefined} 
                     data-chonky-file-id={file?.id ? file.id: ''}>
-                    <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed}/>
+                    <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed} multipleSelect={multipleSelect}/>
                 </div>
                 {file?.isSearchResults && file?.folderPath ? (
                     <div className={classes.listFileSearch} data-chonky-file-id={file?.id ? file.id: ''}>
@@ -141,7 +141,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                     className={classes.listFileEntryName}
                     // title={file ? file.name : undefined}
                 >
-                    <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed}/>
+                    <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed} multipleSelect={multipleSelect}/>
                 </div>
                 {file?.isSearchResults && file?.folderPath ? (
                     <div className={classes.listFileSearch}>

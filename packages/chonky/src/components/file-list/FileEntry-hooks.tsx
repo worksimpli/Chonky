@@ -161,21 +161,24 @@ export const useThumbnailUrl = (file: Nullable<FileData>) => {
     return { thumbnailUrl, thumbnailLoading };
 };
 
-export const useFileClickHandlers = (file: Nullable<FileData>, displayIndex: number) => {
+export const useFileClickHandlers = (file: Nullable<FileData>, displayIndex: number, multipleSelect: any) => {
     const dispatch = useDispatch();
 
     // Prepare base handlers
     const onMouseClick = useCallback(
         (event: MouseClickEvent, clickType: 'single') => {
             if (!file) return;
-
+            let isCtrlKey = event.ctrlKey;
+            if(!!multipleSelect){
+                isCtrlKey = multipleSelect;
+            }
             dispatch(
                 thunkRequestFileAction(ChonkyActions.MouseClickFile, {
                     clickType,
                     file,
                     fileDisplayIndex: displayIndex,
                     altKey: event.altKey,
-                    ctrlKey: event.ctrlKey,
+                    ctrlKey: isCtrlKey,
                     shiftKey: event.shiftKey,
                 })
             );
