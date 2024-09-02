@@ -17,9 +17,12 @@ import { makeGlobalChonkyStyles, useIsMobileBreakpoint } from '../../util/styles
 import { SmartFileEntry } from './FileEntry';
 
 export interface FileListGridProps {
+
     width: number;
     height: number;
     fileListStyle?: CSSProperties & { gridHeight: any }
+    moreToolAction?: React.ReactElement<any, any>;
+
 }
 
 interface GridConfig {
@@ -66,7 +69,7 @@ export const getGridConfig = (
 };
 
 export const GridContainer: React.FC<FileListGridProps> = React.memo(props => {
-    const { width, height, fileListStyle = { width: 0, gridHeight: 0 } } = props;
+    const { width, height, fileListStyle = { width: 0, gridHeight: 0 }, moreToolAction } = props;
 
     const viewConfig = useSelector(selectFileViewConfig) as FileViewConfigGrid;
     const displayFileIds = useSelector(selectors.getDisplayFileIds);
@@ -166,6 +169,7 @@ export const GridContainer: React.FC<FileListGridProps> = React.memo(props => {
                 rowCount={gridConfig.rowCount}
                 width={width}
                 itemKey={getItemKey}
+                moreToolAction={moreToolAction}
             >
                 {cellRenderer}
             </VariableSizeGrid>
