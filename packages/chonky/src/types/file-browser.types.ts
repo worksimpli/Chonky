@@ -207,5 +207,5 @@ export interface FileBrowserProps {
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
     multipleSelect?: React.ReactElement<any, any>;
-    domainName?: React.ReactElement<any, any>;
+    domainName?: string;
 }

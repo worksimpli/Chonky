@@ -19,6 +19,7 @@ import { useFileClickHandlers } from './FileEntry-hooks';
 import { GridEntry } from './GridEntry';
 import { ListEntry } from './ListEntry';
 import { AnyFunction } from 'tsdef';
+import { QwListEntry } from './QwListEntry';
 
 export interface SmartFileEntryProps {
     fileId: Nullable<string>;
@@ -49,7 +50,7 @@ export interface SmartFileEntryProps {
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
     multipleSelect?: React.ReactElement<any, any>;
-    domainName?: React.ReactElement<any, any>;
+    domainName?: string;
 }
 
 const disabledDndState: DndEntryState = {
@@ -91,7 +92,15 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
         };
 
         let EntryComponent: React.FC<FileEntryProps>;
-        if (fileViewMode === FileViewMode.List) EntryComponent = ListEntry;
+       
+        if (fileViewMode === FileViewMode.List){
+            if(!!domainName && domainName == "quickwerx"){
+                EntryComponent = QwListEntry;
+            }
+            else{
+                EntryComponent = ListEntry;
+            }
+        } 
         else if (fileViewMode === FileViewMode.Compact) EntryComponent = CompactEntry;
         else EntryComponent = GridEntry;
 
