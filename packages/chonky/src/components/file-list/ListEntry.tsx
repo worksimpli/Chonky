@@ -39,7 +39,6 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
         const ChonkyIcon = useContext(ChonkyIconContext);
         const fileEntryHtmlProps = useFileEntryHtmlProps(file);
         const DomainEnum = domainName;
-        console.log("DomainEnum------##########", DomainEnum);
         return (
             <>
             {!file?.isDir ?<>

@@ -50,7 +50,7 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                             <div className={c([commonClasses.selectionIndicator, classes.listFileEntrySelection])}></div>
 
                             {/* File Entry Icon */}
-                            <div className={classes.listFileEntryIcon} data-chonky-file-id={file?.id ? file.id : ''}>
+                            <div className={classes.listFileEntryIcon + " qw-listIcon"} data-chonky-file-id={file?.id ? file.id : ''}>
                                 <ChonkyIcon
                                     icon={dndIconName ?? entryState.icon}
                                     spin={dndIconName ? false : entryState.iconSpin}
