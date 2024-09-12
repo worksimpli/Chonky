@@ -49,6 +49,7 @@ export interface SmartFileEntryProps {
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
     multipleSelect?: React.ReactElement<any, any>;
+    domainName?: React.ReactElement<any, any>;
 }
 
 const disabledDndState: DndEntryState = {
@@ -58,7 +59,7 @@ const disabledDndState: DndEntryState = {
 };
 
 export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
-    ({ fileId, displayIndex, fileViewMode, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect }) => {
+    ({ fileId, displayIndex, fileViewMode, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName }) => {
         const classes = useStyles();
 
         // Basic properties
@@ -86,7 +87,7 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
             tags,
             sharedOrPrivate,
             listHeader,
-            moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect
+            moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,
         };
 
         let EntryComponent: React.FC<FileEntryProps>;

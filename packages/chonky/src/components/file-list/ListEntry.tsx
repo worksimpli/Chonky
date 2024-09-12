@@ -20,7 +20,7 @@ interface StyleState {
 }
 
 export const ListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect }) => {
+    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
 
@@ -38,6 +38,8 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
         const commonClasses = useCommonEntryStyles(entryState);
         const ChonkyIcon = useContext(ChonkyIconContext);
         const fileEntryHtmlProps = useFileEntryHtmlProps(file);
+        const DomainEnum = domainName;
+        console.log("DomainEnum------##########", DomainEnum);
         return (
             <>
             {!file?.isDir ?<>

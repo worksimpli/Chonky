@@ -39,4 +39,5 @@ export interface FileEntryProps {
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
     multipleSelect?: React.ReactElement<any, any>;
+    domainName?: React.ReactElement<any, any>;
 }
