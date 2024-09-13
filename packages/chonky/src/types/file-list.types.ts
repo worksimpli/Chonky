@@ -40,4 +40,5 @@ export interface FileEntryProps {
     translationFailed?: React.ReactElement<any, any>;
     multipleSelect?: React.ReactElement<any, any>;
     domainName?: string;
+    qwModifiedText?: string;
 }

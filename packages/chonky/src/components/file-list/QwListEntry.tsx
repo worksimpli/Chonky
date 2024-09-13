@@ -20,7 +20,7 @@ interface StyleState {
 }
 
 export const QwListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName }) => {
+    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
 
@@ -39,7 +39,7 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
         const ChonkyIcon = useContext(ChonkyIconContext);
         const fileEntryHtmlProps = useFileEntryHtmlProps(file);
         const DomainEnum = domainName;
-        console.log("DomainEnum------##########", DomainEnum);
+        const qwModifiedTextDate = qwModifiedText;
         return (
             <>
             {!file?.isDir ?<>
@@ -62,9 +62,11 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                 {/* File Entry Property (Moved above Name) */}
                                 <div className={classes.listFileEntryProperty+" qw-property"} data-chonky-file-id={file?.id ? file.id : ''}>
                                     {file ? (
-                                        fileModDateString ?? <span>—</span>
+                               <span>
+                               {qwModifiedText} {fileModDateString ?? <span>—</span>}
+                           </span>
                                     ) : (
-                                        <TextPlaceholder minLength={5} maxLength={15} />
+                                         <TextPlaceholder minLength={5} maxLength={15} />
                                     )}
                                 </div>
                                 <div className="name-star-container">
