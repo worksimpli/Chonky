@@ -208,4 +208,5 @@ export interface FileBrowserProps {
     translationFailed?: React.ReactElement<any, any>;
     multipleSelect?: React.ReactElement<any, any>;
     domainName?: string;
+    qwModifiedText?: string;
 }

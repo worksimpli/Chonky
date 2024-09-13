@@ -87,6 +87,7 @@ const App = () => {
                 translationFailed={<div></div>}
                 multipleSelect={false}
                 domainName={<div>domainName</div>}
+                qwModifiedText={<div>qwModifiedText</div>}
             />
         </div>
     );
