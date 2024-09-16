@@ -142,6 +142,10 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
                         width={width}
                         height={height}
                         fileListStyle={fileListStyle}
+                        domainName={domainName}
+                        moreToolAction={moreToolAction}
+                        activeStar={activeStar}
+                        deactivateStar={deactivateStar}
                     />
                 );
             }
