@@ -21,11 +21,15 @@ export interface FileEntryNameProps {
     conversionCompleted?: React.ReactElement<any, any>;
     translateInProgress?: React.ReactElement<any, any>;
     translationFailed?: React.ReactElement<any, any>;
-    multipleSelect?: React.ReactElement<any, any>;
+    multipleSelect?: React.ReactElement<any, any>; 
+    domainName?: string;
+    activeStar?: React.ReactElement<any, any>;
+    deactivateStar?: React.ReactElement<any, any>;
+    moreToolAction?: React.ReactElement<any, any>;
     
 }
 
-export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, className,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed }) => {
+export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, className,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,domainName,deactivateStar,activeStar,moreToolAction }) => {
     const modifierIconComponents = useModifierIconComponents(file);
     const fileNameComponent = useFileNameComponent(file);
     const fileTags = file?.tags?.split(",").filter((d:string) => Boolean(d));
@@ -39,22 +43,31 @@ export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, c
                 <span className={classes.modifierIcons} data-chonky-file-id={file?.id ? file.id: ''}>{modifierIconComponents}</span>
             )}
             {fileNameComponent}
-            {fileTags?.length ? (   
+            {domainName !== "quickwerx" && 
+             fileTags?.length ? (   
                 <div className="chonky-tags" data-chonky-file-id={file?.id ? file.id: ''}>
                     {fileTags?.map((tag:string, index: number) => (
                         <span className={'tags-'+ index.toString()+ '-' + tag} key={index.toString()+tag} data-chonky-file-id={file?.id ? file.id: ''}>{tag}</span>
                     ))}
                 </div>)
              : null}
-             {esignStatus != "" ? (  <div className="chonky-esign-status" data-chonky-file-id={file?.id ? file.id: ''}>
+             {domainName !== "quickwerx" && 
+             esignStatus != "" ? (  <div className="chonky-esign-status" data-chonky-file-id={file?.id ? file.id: ''}>
              {esignStatus}
                 </div>) : null}
+                {domainName !== "quickwerx" && <>
                 {file?.isConversionInProgress && conversionInProgress}
                 {file?.isConversionFailed && conversionFailed}
                 {file?.isConversionCompleted && conversionCompleted}
                 {file?.isTranslateInProgress && translateInProgress}
                 {file?.isTranslationFailed && translationFailed}
-              
+                </>
+                }
+              {domainName === "quickwerx" && 
+              <div className='qwgridStarContainer'>
+{file?.isStarred ? activeStar : deactivateStar}
+{moreToolAction}
+                </div>}
         </span>
     );
 });

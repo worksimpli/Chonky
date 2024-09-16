@@ -20,6 +20,7 @@ import { GridEntry } from './GridEntry';
 import { ListEntry } from './ListEntry';
 import { AnyFunction } from 'tsdef';
 import { QwListEntry } from './QwListEntry';
+import { QwGridEntry } from './QwGridEntry';
 
 export interface SmartFileEntryProps {
     fileId: Nullable<string>;
@@ -103,7 +104,13 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
             }
         } 
         else if (fileViewMode === FileViewMode.Compact) EntryComponent = CompactEntry;
-        else EntryComponent = GridEntry;
+        else 
+        if(!!domainName && domainName == "quickwerx"){
+            EntryComponent = QwGridEntry;
+        }
+        else{
+            EntryComponent = GridEntry;
+        }
 
         return dndDisabled ? (
             <ClickableWrapper {...clickableWrapperProps}>
