@@ -21,6 +21,7 @@ export interface FileEntryProps {
         sharedText: string;
         privateText: string;
     };
+    listContainerClass?:string;
     listHeader?: {
         name: string;
         location: string;

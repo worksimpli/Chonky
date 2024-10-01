@@ -88,6 +88,7 @@ const App = () => {
                 multipleSelect={false}
                 domainName={<div>domainName</div>}
                 qwModifiedText={<div>qwModifiedText</div>}
+                listContainerClass=""
             />
         </div>
     );

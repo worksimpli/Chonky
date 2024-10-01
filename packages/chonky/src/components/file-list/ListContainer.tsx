@@ -14,6 +14,7 @@ import { useInstanceVariable } from '../../util/hooks-helpers';
 import { makeLocalChonkyStyles } from '../../util/styles';
 import { SmartFileEntry } from './FileEntry';
 import { AnyFunction } from 'tsdef';
+import c from 'classnames';
 
 export interface FileListListProps {
     width: number;
@@ -26,6 +27,7 @@ export interface FileListListProps {
         sharedText: string;
         privateText: string;
     };
+    listContainerClass?:string;
     listHeader?: {
         name: string;
         location: string;
@@ -49,7 +51,7 @@ export interface FileListListProps {
 }
 
 export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
-    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText } = props;
+    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, listContainerClass, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText } = props;
 
     const viewConfig = useSelector(selectFileViewConfig);
 
@@ -98,7 +100,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
         return (
             <FixedSizeList
                 ref={listRef as any}
-                className={classes.listContainer}
+                className={c([classes.listContainer, listContainerClass])}
                 itemSize={(fileListStyle.height as any) || viewConfig.entryHeight}
                 height={height}
                 itemCount={displayFileIds.length}

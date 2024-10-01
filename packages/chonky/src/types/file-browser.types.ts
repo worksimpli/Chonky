@@ -189,6 +189,7 @@ export interface FileBrowserProps {
         sharedText: string;
         privateText: string;
     };
+    listContainerClass?:string;
     listHeader?: {
         name: string;
         location: string;
