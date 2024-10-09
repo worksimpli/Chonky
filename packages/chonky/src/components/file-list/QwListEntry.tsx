@@ -190,11 +190,11 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                     )}
                                 </div>
                                 <div className="name-star-container">
-                                    <div className={classes.listFileEntryStar + " qw-starred"} data-chonky-file-id={file?.id ? file.id : ''}>
+                                    {/* <div className={classes.listFileEntryStar + " qw-starred"} data-chonky-file-id={file?.id ? file.id : ''}>
                                         <div className={file?.id ? file.id : ''} data-row-id={file?.id ? file.id : ''} data-chonky-file-id={file?.id ? file.id : ''}>
                                             {file?.isStarred ? activeStar : deactivateStar}
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div
                                         className={classes.listFileEntryName + " qw-filename"}
                                     >
