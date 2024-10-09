@@ -178,12 +178,35 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                     file={file}
                                 />
                             </div>
-                            <div
-                                className={classes.listFileEntryName}
-                            // title={file ? file.name : undefined}
-                            >
-                                <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed} multipleSelect={multipleSelect} domainName={domainName} />
+
+                            <div className="wrap-content">
+                                <div className={classes.listFileEntryProperty + " qw-property"} data-chonky-file-id={file?.id ? file.id : ''}>
+                                    {file ? (
+                                        <span>
+                                            {qwModifiedText} {fileModDateString ?? <span>—</span>}
+                                        </span>
+                                    ) : (
+                                        <TextPlaceholder minLength={5} maxLength={15} />
+                                    )}
+                                </div>
+                                <div className="name-star-container">
+                                    <div className={classes.listFileEntryStar + " qw-starred"} data-chonky-file-id={file?.id ? file.id : ''}>
+                                        {!file?.isDir ? (
+                                            <>
+                                                <div className={file?.id ? file.id : ''} data-row-id={file?.id ? file.id : ''} data-chonky-file-id={file?.id ? file.id : ''}>
+                                                    {file?.isStarred ? activeStar : deactivateStar}
+                                                </div>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                    <div
+                                        className={classes.listFileEntryName + " qw-filename"}
+                                    >
+                                        <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed} multipleSelect={multipleSelect} domainName={domainName} />
+                                    </div>
+                                </div>
                             </div>
+                           
                             {file?.isSearchResults && file?.folderPath ? (
                                 <div className={classes.listFileSearch}>
                                     {dotsInFiles(file?.folderPath)}
