@@ -191,13 +191,9 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                 </div>
                                 <div className="name-star-container">
                                     <div className={classes.listFileEntryStar + " qw-starred"} data-chonky-file-id={file?.id ? file.id : ''}>
-                                        {!file?.isDir ? (
-                                            <>
-                                                <div className={file?.id ? file.id : ''} data-row-id={file?.id ? file.id : ''} data-chonky-file-id={file?.id ? file.id : ''}>
-                                                    {file?.isStarred ? activeStar : deactivateStar}
-                                                </div>
-                                            </>
-                                        ) : null}
+                                        <div className={file?.id ? file.id : ''} data-row-id={file?.id ? file.id : ''} data-chonky-file-id={file?.id ? file.id : ''}>
+                                            {file?.isStarred ? activeStar : deactivateStar}
+                                        </div>
                                     </div>
                                     <div
                                         className={classes.listFileEntryName + " qw-filename"}
@@ -213,13 +209,13 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                     <span className="list-file-search-tooltip">{file?.folderPath}</span>
                                 </div>
                             ) : null}
-                            <div className={classes.listFileEntryProperty}>
+                            {/* <div className={classes.listFileEntryProperty}>
                                 {file ? (
                                     fileModDateString ?? <span>—</span>
                                 ) : (
                                     <TextPlaceholder minLength={5} maxLength={15} />
                                 )}
-                            </div>
+                            </div> */}
                             <div className={classes.listFileSizeProperty}>
                                 {file ? (
                                     fileSizeString ?? <span>—</span>
