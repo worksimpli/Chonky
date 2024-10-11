@@ -24,6 +24,7 @@ export interface FileListGridProps {
     moreToolAction?: React.ReactElement<any, any>;
     activeStar: React.ReactElement<any, any>;
     deactivateStar: React.ReactElement<any, any>;
+   
 }
 
 interface GridConfig {

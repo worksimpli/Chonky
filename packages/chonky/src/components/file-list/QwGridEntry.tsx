@@ -7,7 +7,7 @@ import { useFileEntryHtmlProps, useFileEntryState } from './FileEntry-hooks';
 import { FileEntryName } from './FileEntryName';
 import { FileEntryState, GridEntryPreviewFile, GridEntryPreviewFolder } from './GridEntryPreview';
 
-export const QwGridEntry: React.FC<FileEntryProps> = React.memo(({ file, selected, focused, dndState,deactivateStar,activeStar,moreToolAction }) => {
+export const QwGridEntry: React.FC<FileEntryProps> = React.memo(({ file, selected, focused, dndState,deactivateStar,activeStar,moreToolAction,domainName }) => {
     const isDirectory = FileHelper.isDirectory(file);
     const entryState = useFileEntryState(file, selected, focused);
 
@@ -24,6 +24,7 @@ export const QwGridEntry: React.FC<FileEntryProps> = React.memo(({ file, selecte
                     entryState={entryState}
                     dndState={dndState}
                     file={file}
+                    deactivateStar={deactivateStar} activeStar={activeStar} moreToolAction={moreToolAction} domainName={domainName}
                 />
             ) : (
                 <GridEntryPreviewFile
@@ -31,6 +32,7 @@ export const QwGridEntry: React.FC<FileEntryProps> = React.memo(({ file, selecte
                     entryState={entryState}
                     dndState={dndState}
                     file={file}
+                    deactivateStar={deactivateStar} activeStar={activeStar} moreToolAction={moreToolAction} domainName={domainName}
                 />
             )}
             <div className={classes.gridFileEntryNameContainer}>
