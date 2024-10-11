@@ -30,10 +30,15 @@ export interface FileEntryPreviewProps {
     entryState: FileEntryState;
     dndState: DndEntryState;
     file:Nullable<FileData>;
+    deactivateStar?: React.ReactElement<any, any>;
+    activeStar?: React.ReactElement<any, any>; 
+    moreToolAction?:  React.ReactElement<any, any>;
+    domainName?: string;
+
 }
 
 export const GridEntryPreviewFolder: React.FC<FileEntryPreviewProps> = React.memo(props => {
-    const { className: externalClassName, entryState, dndState,file } = props;
+    const { className: externalClassName, entryState, dndState,file,deactivateStar,activeStar,moreToolAction,domainName } = props;
 
     const folderClasses = useFolderStyles(entryState);
     const fileClasses = useFileStyles(entryState);
@@ -51,6 +56,11 @@ export const GridEntryPreviewFolder: React.FC<FileEntryPreviewProps> = React.mem
                     <div className={c([fileClasses.fileIcon, folderClasses.fileIcon])} data-chonky-file-id={file?.id ? file.id: ''}>{entryState.childrenCount}</div>
                     <div className={commonClasses.selectionIndicator} data-chonky-file-id={file?.id ? file.id: ''}></div>
                     <FileThumbnail className={fileClasses.thumbnail} thumbnailUrl={entryState.thumbnailUrl} />
+                    {domainName === "quickwerx" &&  
+                     <div className='qw-threedots'>
+                    {moreToolAction}
+                    </div>  }
+                  
                 </div>
             </div>
         </div>
@@ -131,7 +141,7 @@ const useFolderStyles = makeLocalChonkyStyles(theme => ({
 }));
 
 export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(props => {
-    const { className: externalClassName, entryState, dndState,file } = props;
+    const { className: externalClassName, entryState, dndState,file,moreToolAction,domainName } = props;
 
     const fileClasses = useFileStyles(entryState);
     const commonClasses = useCommonEntryStyles(entryState);
@@ -148,6 +158,10 @@ export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(
             </div>
             <div className={commonClasses.selectionIndicator} data-chonky-file-id={file?.id ? file.id: ''}></div>
             <FileThumbnail className={fileClasses.thumbnail} thumbnailUrl={entryState.thumbnailUrl} />
+            {domainName === "quickwerx" &&  
+                     <div className='qw-threedots'>
+                    {moreToolAction}
+                    </div>  }
         </div>
     );
 });
