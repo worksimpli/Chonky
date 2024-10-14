@@ -29,43 +29,74 @@ export interface FileEntryPreviewProps {
     className?: string;
     entryState: FileEntryState;
     dndState: DndEntryState;
-    file:Nullable<FileData>;
+    file: Nullable<FileData>;
     deactivateStar?: React.ReactElement<any, any>;
-    activeStar?: React.ReactElement<any, any>; 
-    moreToolAction?:  React.ReactElement<any, any>;
+    activeStar?: React.ReactElement<any, any>;
+    moreToolAction?: React.ReactElement<any, any>;
     domainName?: string;
-
 }
 
-export const GridEntryPreviewFolder: React.FC<FileEntryPreviewProps> = React.memo(props => {
-    const { className: externalClassName, entryState, dndState,file,deactivateStar,activeStar,moreToolAction,domainName } = props;
+export const GridEntryPreviewFolder: React.FC<FileEntryPreviewProps> = React.memo(
+    props => {
+        const {
+            className: externalClassName,
+            entryState,
+            dndState,
+            file,
+            deactivateStar,
+            activeStar,
+            moreToolAction,
+            domainName,
+        } = props;
 
-    const folderClasses = useFolderStyles(entryState);
-    const fileClasses = useFileStyles(entryState);
-    const commonClasses = useCommonEntryStyles(entryState);
-    const className = c({
-        [folderClasses.previewFile]: true,
-        [externalClassName || '']: !!externalClassName,
-    });
-    return (
-        <div className={className} data-chonky-file-id={file?.id ? file.id: ''}>
-            <div className={folderClasses.folderBackSideMid} data-chonky-file-id={file?.id ? file.id: ''}>
-                <div className={folderClasses.folderBackSideTop} data-chonky-file-id={file?.id ? file.id: ''}/>
-                <div className={folderClasses.folderFrontSide} data-chonky-file-id={file?.id ? file.id: ''}>
-                    <GridEntryDndIndicator className={fileClasses.dndIndicator} dndState={dndState} />
-                    <div className={c([fileClasses.fileIcon, folderClasses.fileIcon])} data-chonky-file-id={file?.id ? file.id: ''}>{entryState.childrenCount}</div>
-                    <div className={commonClasses.selectionIndicator} data-chonky-file-id={file?.id ? file.id: ''}></div>
-                    <FileThumbnail className={fileClasses.thumbnail} thumbnailUrl={entryState.thumbnailUrl} />
-                    {domainName === "quickwerx" &&  
-                     <div className='qw-threedots'>
-                    {moreToolAction}
-                    </div>  }
-                  
+        const folderClasses = useFolderStyles(entryState);
+        const fileClasses = useFileStyles(entryState);
+        const commonClasses = useCommonEntryStyles(entryState);
+        const className = c({
+            [folderClasses.previewFile]: true,
+            [externalClassName || '']: !!externalClassName,
+        });
+        return (
+            <div className={className} data-chonky-file-id={file?.id ? file.id : ''}>
+                <div
+                    className={folderClasses.folderBackSideMid}
+                    data-chonky-file-id={file?.id ? file.id : ''}
+                >
+                    <div
+                        className={folderClasses.folderBackSideTop}
+                        data-chonky-file-id={file?.id ? file.id : ''}
+                    />
+                    <div
+                        className={folderClasses.folderFrontSide}
+                        data-chonky-file-id={file?.id ? file.id : ''}
+                    >
+                        <GridEntryDndIndicator
+                            className={fileClasses.dndIndicator}
+                            dndState={dndState}
+                        />
+                        <div
+                            className={c([
+                                fileClasses.fileIcon,
+                                folderClasses.fileIcon,
+                            ])}
+                            data-chonky-file-id={file?.id ? file.id : ''}
+                        >
+                            {entryState.childrenCount}
+                        </div>
+                        <div
+                            className={commonClasses.selectionIndicator}
+                            data-chonky-file-id={file?.id ? file.id : ''}
+                        ></div>
+                        <FileThumbnail
+                            className={fileClasses.thumbnail}
+                            thumbnailUrl={entryState.thumbnailUrl}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-    );
-});
+        );
+    }
+);
 GridEntryPreviewFolder.displayName = 'GridEntryPreviewFolder';
 
 const useFolderStyles = makeLocalChonkyStyles(theme => ({
@@ -123,7 +154,9 @@ const useFolderStyles = makeLocalChonkyStyles(theme => ({
             const shadows: string[] = [];
             if (state.focused) shadows.push('inset rgba(0, 0, 0, 1) 0 0 0 3px');
             if (state.selected) shadows.push('inset rgba(0, 153, 255, .65) 0 0 0 3px');
-            shadows.push(`inset ${theme.gridFileEntry.folderFrontColorTint} 0 0 0 999px`);
+            shadows.push(
+                `inset ${theme.gridFileEntry.folderFrontColorTint} 0 0 0 999px`
+            );
             return shadows.join(', ');
         },
         backgroundColor: (state: FileEntryState) => state.color,
@@ -140,31 +173,52 @@ const useFolderStyles = makeLocalChonkyStyles(theme => ({
     },
 }));
 
-export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(props => {
-    const { className: externalClassName, entryState, dndState,file,moreToolAction,domainName } = props;
+export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(
+    props => {
+        const {
+            className: externalClassName,
+            entryState,
+            dndState,
+            file,
+            moreToolAction,
+            domainName,
+        } = props;
 
-    const fileClasses = useFileStyles(entryState);
-    const commonClasses = useCommonEntryStyles(entryState);
-    const ChonkyIcon = useContext(ChonkyIconContext);
-    const className = c({
-        [fileClasses.previewFile]: true,
-        [externalClassName || '']: !!externalClassName,
-    });
-    return (
-        <div className={className} data-chonky-file-id={file?.id ? file.id: ''}>
-            <GridEntryDndIndicator className={fileClasses.dndIndicator} dndState={dndState} />
-            <div className={fileClasses.fileIcon} data-chonky-file-id={file?.id ? file.id: ''}>
-                <ChonkyIcon icon={entryState.icon} spin={entryState.iconSpin} file={file}/>
+        const fileClasses = useFileStyles(entryState);
+        const commonClasses = useCommonEntryStyles(entryState);
+        const ChonkyIcon = useContext(ChonkyIconContext);
+        const className = c({
+            [fileClasses.previewFile]: true,
+            [externalClassName || '']: !!externalClassName,
+        });
+        return (
+            <div className={className} data-chonky-file-id={file?.id ? file.id : ''}>
+                <GridEntryDndIndicator
+                    className={fileClasses.dndIndicator}
+                    dndState={dndState}
+                />
+                <div
+                    className={fileClasses.fileIcon}
+                    data-chonky-file-id={file?.id ? file.id : ''}
+                >
+                    <ChonkyIcon
+                        icon={entryState.icon}
+                        spin={entryState.iconSpin}
+                        file={file}
+                    />
+                </div>
+                <div
+                    className={commonClasses.selectionIndicator}
+                    data-chonky-file-id={file?.id ? file.id : ''}
+                ></div>
+                <FileThumbnail
+                    className={fileClasses.thumbnail}
+                    thumbnailUrl={entryState.thumbnailUrl}
+                />
             </div>
-            <div className={commonClasses.selectionIndicator} data-chonky-file-id={file?.id ? file.id: ''}></div>
-            <FileThumbnail className={fileClasses.thumbnail} thumbnailUrl={entryState.thumbnailUrl} />
-            {domainName === "quickwerx" &&  
-                     <div className='qw-threedots'>
-                    {moreToolAction}
-                    </div>  }
-        </div>
-    );
-});
+        );
+    }
+);
 GridEntryPreviewFile.displayName = 'GridEntryPreviewFile';
 
 const useFileStyles = makeLocalChonkyStyles(theme => ({
@@ -187,9 +241,12 @@ const useFileStyles = makeLocalChonkyStyles(theme => ({
     fileIcon: {
         transform: 'translateX(-50%) translateY(-50%)',
         fontSize: theme.gridFileEntry.iconSize,
-        opacity: (state: FileEntryState) => (state.thumbnailUrl && !state.focused ? 0 : 1),
+        opacity: (state: FileEntryState) =>
+            state.thumbnailUrl && !state.focused ? 0 : 1,
         color: (state: FileEntryState) =>
-            state.focused ? theme.gridFileEntry.iconColorFocused : theme.gridFileEntry.iconColor,
+            state.focused
+                ? theme.gridFileEntry.iconColorFocused
+                : theme.gridFileEntry.iconColor,
         position: 'absolute',
         left: '50%',
         zIndex: 12,

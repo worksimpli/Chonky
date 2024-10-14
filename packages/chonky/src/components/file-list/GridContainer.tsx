@@ -71,7 +71,7 @@ export const getGridConfig = (
 };
 
 export const GridContainer: React.FC<FileListGridProps> = React.memo(props => {
-    const { width, height, fileListStyle = { width: 0, gridHeight: 0 } ,  domainName} = props;
+    const { width, height, fileListStyle = { width: 0, gridHeight: 0 } ,  domainName,moreToolAction,deactivateStar,activeStar} = props;
 
     const viewConfig = useSelector(selectFileViewConfig) as FileViewConfigGrid;
     const displayFileIds = useSelector(selectors.getDisplayFileIds);
@@ -149,7 +149,7 @@ export const GridContainer: React.FC<FileListGridProps> = React.memo(props => {
 
             return (
                 <div style={styleWithGutter}>
-                    <SmartFileEntry fileId={fileId ?? null} displayIndex={index} fileViewMode={viewConfig.mode} nothingToShowLabel="No files to display" />
+                    <SmartFileEntry fileId={fileId ?? null} displayIndex={index} fileViewMode={viewConfig.mode} nothingToShowLabel="No files to display" domainName={domainName} moreToolAction={moreToolAction} deactivateStar={deactivateStar} activeStar={activeStar} />
                 </div>
             );
         },

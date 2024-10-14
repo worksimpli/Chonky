@@ -178,53 +178,65 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                                 multipleSelect={multipleSelect}
                                                 domainName={domainName}
                                             />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="qw-tagiconlist">
-                                    {fileTags?.length ? (
-                                        <div
-                                            className="chonky-tags"
-                                            data-chonky-file-id={
-                                                file?.id ? file.id : ''
-                                            }
-                                        >
-                                            {fileTags?.map(
-                                                (tag: string, index: number) => (
-                                                    <span
-                                                        className={
-                                                            'tags-' +
-                                                            index.toString() +
-                                                            '-' +
-                                                            tag
-                                                        }
-                                                        key={index.toString() + tag}
+                                            <div className="qw-tagiconlist">
+                                                {fileTags?.length ? (
+                                                    <div
+                                                        className="chonky-tags"
                                                         data-chonky-file-id={
                                                             file?.id ? file.id : ''
                                                         }
                                                     >
-                                                        {tag}
-                                                    </span>
-                                                )
-                                            )}
+                                                        {fileTags?.map(
+                                                            (
+                                                                tag: string,
+                                                                index: number
+                                                            ) => (
+                                                                <span
+                                                                    className={
+                                                                        'tags-' +
+                                                                        index.toString() +
+                                                                        '-' +
+                                                                        tag
+                                                                    }
+                                                                    key={
+                                                                        index.toString() +
+                                                                        tag
+                                                                    }
+                                                                    data-chonky-file-id={
+                                                                        file?.id
+                                                                            ? file.id
+                                                                            : ''
+                                                                    }
+                                                                >
+                                                                    {tag}
+                                                                </span>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                ) : null}
+                                                {esignCurrentStatus != '' ? (
+                                                    <div
+                                                        className="chonky-esign-status"
+                                                        data-chonky-file-id={
+                                                            file?.id ? file.id : ''
+                                                        }
+                                                    >
+                                                        {esignCurrentStatus}
+                                                    </div>
+                                                ) : null}
+                                                {file?.isConversionInProgress &&
+                                                    conversionInProgress}
+                                                {file?.isConversionFailed &&
+                                                    conversionFailed}
+                                                {file?.isConversionCompleted &&
+                                                    conversionCompleted}
+                                                {file?.isTranslateInProgress &&
+                                                    translateInProgress}
+                                                {file?.isTranslationFailed &&
+                                                    translationFailed}
+                                            </div>
                                         </div>
-                                    ) : null}
-                                    {esignCurrentStatus != '' ? (
-                                        <div
-                                            className="chonky-esign-status"
-                                            data-chonky-file-id={
-                                                file?.id ? file.id : ''
-                                            }
-                                        >
-                                            {esignCurrentStatus}
-                                        </div>
-                                    ) : null}
-                                    {file?.isConversionInProgress &&
-                                        conversionInProgress}
-                                    {file?.isConversionFailed && conversionFailed}
-                                    {file?.isConversionCompleted && conversionCompleted}
-                                    {file?.isTranslateInProgress && translateInProgress}
-                                    {file?.isTranslationFailed && translationFailed}
+                                    </div>
                                 </div>
 
                                 {/* Search Results */}
