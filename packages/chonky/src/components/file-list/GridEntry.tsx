@@ -33,7 +33,7 @@ export const GridEntry: React.FC<FileEntryProps> = React.memo(({ file, selected,
                     file={file}
                 />
             )}
-            <div className={classes.gridFileEntryNameContainer}>
+            <div className={classes.gridFileEntryNameContainer + "  wsgridcontainer"}>
                 <FileEntryName className={classes.gridFileEntryName} file={file}/>
             </div>
         </div>

@@ -35,7 +35,7 @@ export const QwGridEntry: React.FC<FileEntryProps> = React.memo(({ file, selecte
                     deactivateStar={deactivateStar} activeStar={activeStar} moreToolAction={moreToolAction} domainName={domainName}
                 />
             )}
-            <div className={classes.gridFileEntryNameContainer}>
+            <div className={classes.gridFileEntryNameContainer +" qwgridmoretools"}>
                 <FileEntryName className={classes.gridFileEntryName} file={file} deactivateStar={deactivateStar} activeStar={activeStar} moreToolAction={moreToolAction}/>
             </div>
             {domainName === "quickwerx" && 
