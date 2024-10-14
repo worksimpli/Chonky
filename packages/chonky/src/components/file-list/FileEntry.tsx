@@ -97,21 +97,12 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
 
         let EntryComponent: React.FC<FileEntryProps>;
        
-        if (fileViewMode === FileViewMode.List){
-            if(!!domainName && domainName == "quickwerx"){
-                EntryComponent = QwListEntry;
-            }
-            else{
-                EntryComponent = ListEntry;
-            }
-        } 
-        else if (fileViewMode === FileViewMode.Compact) EntryComponent = CompactEntry;
-        else 
-        if(!!domainName && domainName == "quickwerx"){
-            EntryComponent = QwGridEntry;
-        }
-        else{
-            EntryComponent = GridEntry;
+        if (fileViewMode === FileViewMode.List) {
+            EntryComponent = domainName === "quickwerx" ? QwListEntry : ListEntry;
+        } else if (fileViewMode === FileViewMode.Compact) {
+            EntryComponent = CompactEntry;
+        } else {
+            EntryComponent = domainName === "quickwerx" ? QwGridEntry : GridEntry;
         }
 
         return dndDisabled ? (
