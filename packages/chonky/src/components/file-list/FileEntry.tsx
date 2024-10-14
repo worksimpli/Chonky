@@ -1,4 +1,4 @@
-import React, { useState,UIEvent } from 'react';
+import React, { useState, UIEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { Nullable } from 'tsdef';
 
@@ -33,16 +33,16 @@ export interface SmartFileEntryProps {
         sharedText: string;
         privateText: string;
     };
-    listContainerClass?:string;
+    listContainerClass?: string;
     listHeader?: {
         name: string;
         location: string;
-        modified:string;
-        sharing:string;
+        modified: string;
+        sharing: string;
     };
     moreToolAction?: React.ReactElement<any, any>;
     esignStatus?: React.ReactElement<any, any>;
-    onFileDoubleClickHandler?:{
+    onFileDoubleClickHandler?: {
         dblRowobj: AnyFunction;
     };
     nothingToShowLabel: string;
@@ -63,7 +63,29 @@ const disabledDndState: DndEntryState = {
 };
 
 export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
-    ({ fileId, displayIndex, fileViewMode, activeStar, deactivateStar, tags, listContainerClass, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText }) => {
+    ({
+        fileId,
+        displayIndex,
+        fileViewMode,
+        activeStar,
+        deactivateStar,
+        tags,
+        listContainerClass,
+        sharedOrPrivate,
+        listHeader,
+        moreToolAction,
+        esignStatus,
+        onFileDoubleClickHandler,
+        nothingToShowLabel,
+        conversionInProgress,
+        conversionFailed,
+        conversionCompleted,
+        translateInProgress,
+        translationFailed,
+        multipleSelect,
+        domainName,
+        qwModifiedText,
+    }) => {
         const classes = useStyles();
 
         // Basic properties
@@ -72,7 +94,11 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
         const dndDisabled = useSelector(selectIsDnDDisabled);
 
         // Clickable wrapper properties
-        const fileClickHandlers = useFileClickHandlers(file, displayIndex, multipleSelect);
+        const fileClickHandlers = useFileClickHandlers(
+            file,
+            displayIndex,
+            multipleSelect
+        );
         const [focused, setFocused] = useState(false);
         const clickableWrapperProps: ClickableWrapperProps = {
             wrapperTag: 'div',
@@ -92,34 +118,39 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
             sharedOrPrivate,
             listContainerClass,
             listHeader,
-            moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText
+            moreToolAction,
+            esignStatus,
+            onFileDoubleClickHandler,
+            nothingToShowLabel,
+            conversionInProgress,
+            conversionFailed,
+            conversionCompleted,
+            translateInProgress,
+            translationFailed,
+            multipleSelect,
+            domainName,
+            qwModifiedText,
         };
 
         let EntryComponent: React.FC<FileEntryProps>;
-       
+
         if (fileViewMode === FileViewMode.List) {
-            EntryComponent = domainName === "quickwerx" ? QwListEntry : ListEntry;
+            EntryComponent = domainName === 'quickwerx' ? QwListEntry : ListEntry;
         } else if (fileViewMode === FileViewMode.Compact) {
             EntryComponent = CompactEntry;
         } else {
-            EntryComponent = domainName === "quickwerx" ? QwGridEntry : GridEntry;
+            EntryComponent = domainName === 'quickwerx' ? QwGridEntry : GridEntry;
         }
 
         return dndDisabled ? (
             <ClickableWrapper {...clickableWrapperProps}>
-                <EntryComponent
-                    {...fileEntryProps}
-                    dndState={disabledDndState}
-                />
+                <EntryComponent {...fileEntryProps} dndState={disabledDndState} />
             </ClickableWrapper>
         ) : (
             <DnDFileEntry file={file}>
                 {dndState => (
                     <ClickableWrapper {...clickableWrapperProps}>
-                        <EntryComponent
-                            {...fileEntryProps}
-                            dndState={dndState}
-                        />
+                        <EntryComponent {...fileEntryProps} dndState={dndState} />
                     </ClickableWrapper>
                 )}
             </DnDFileEntry>
