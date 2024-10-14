@@ -12,7 +12,7 @@ import {
 } from './FileEntry-hooks';
 import { FileEntryName } from './FileEntryName';
 import { FileEntryState, useCommonEntryStyles } from './GridEntryPreview';
-import dotsInFiles from "../../util/dotsInFiles";
+import dotsInFiles from '../../util/dotsInFiles';
 
 interface StyleState {
     entryState: FileEntryState;
@@ -20,10 +20,30 @@ interface StyleState {
 }
 
 export const QwListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused, dndState, activeStar, deactivateStar, tags, sharedOrPrivate, moreToolAction, esignStatus, onFileDoubleClickHandler, conversionInProgress, conversionFailed, conversionCompleted, translateInProgress, translationFailed, multipleSelect, domainName, qwModifiedText }) => {
+    ({
+        file,
+        selected,
+        focused,
+        dndState,
+        activeStar,
+        deactivateStar,
+        tags,
+        sharedOrPrivate,
+        moreToolAction,
+        esignStatus,
+        onFileDoubleClickHandler,
+        conversionInProgress,
+        conversionFailed,
+        conversionCompleted,
+        translateInProgress,
+        translationFailed,
+        multipleSelect,
+        domainName,
+        qwModifiedText,
+    }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
-        const fileTags = file?.tags?.split(",").filter((d: string) => Boolean(d));
+        const fileTags = file?.tags?.split(',').filter((d: string) => Boolean(d));
         const esignCurrentStatus = file?.envelope;
         const { fileModDateString, fileSizeString } = useLocalizedFileEntryStrings(
             file
@@ -43,15 +63,249 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
         const qwModifiedTextDate = qwModifiedText;
         return (
             <>
-                {!file?.isDir ? <>
-                    <span onDoubleClick={onFileDoubleClickHandler?.dblRowobj} data-chonky-file-id={file?.id ? file.id : ''} className='qw-conky-container'>
-                        <div className={`${classes.listFileEntry} ${file?.isChecked ? 'is-checked' : ''}`} {...fileEntryHtmlProps}>
+                {!file?.isDir ? (
+                    <>
+                        <span
+                            onDoubleClick={onFileDoubleClickHandler?.dblRowobj}
+                            data-chonky-file-id={file?.id ? file.id : ''}
+                            className="qw-conky-container"
+                        >
+                            <div
+                                className={`${classes.listFileEntry} ${
+                                    file?.isChecked ? 'is-checked' : ''
+                                }`}
+                                {...fileEntryHtmlProps}
+                            >
+                                <div className={commonClasses.focusIndicator}></div>
+                                <div
+                                    className={c([
+                                        commonClasses.selectionIndicator,
+                                        classes.listFileEntrySelection,
+                                    ])}
+                                ></div>
 
+                                {/* File Entry Icon */}
+                                <div
+                                    className={
+                                        classes.listFileEntryIcon + ' qw-listIcon'
+                                    }
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    <ChonkyIcon
+                                        icon={dndIconName ?? entryState.icon}
+                                        spin={dndIconName ? false : entryState.iconSpin}
+                                        fixedWidth={true}
+                                        file={file}
+                                    />
+                                </div>
+                                <div className="wrap-content">
+                                    {/* File Entry Property (Moved above Name) */}
+                                    <div
+                                        className={
+                                            classes.listFileEntryProperty +
+                                            ' qw-property'
+                                        }
+                                        data-chonky-file-id={file?.id ? file.id : ''}
+                                    >
+                                        {file ? (
+                                            <span>
+                                                {qwModifiedText}{' '}
+                                                {fileModDateString ?? <span>—</span>}
+                                            </span>
+                                        ) : (
+                                            <TextPlaceholder
+                                                minLength={5}
+                                                maxLength={15}
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="name-star-container">
+                                        {/* File Entry Star (Moved after Icon) */}
+                                        <div
+                                            className={
+                                                classes.listFileEntryStar +
+                                                ' qw-starred'
+                                            }
+                                            data-chonky-file-id={
+                                                file?.id ? file.id : ''
+                                            }
+                                        >
+                                            {!file?.isDir ? (
+                                                <>
+                                                    <div
+                                                        className={
+                                                            file?.id ? file.id : ''
+                                                        }
+                                                        data-row-id={
+                                                            file?.id ? file.id : ''
+                                                        }
+                                                        data-chonky-file-id={
+                                                            file?.id ? file.id : ''
+                                                        }
+                                                    >
+                                                        {file?.isStarred
+                                                            ? activeStar
+                                                            : deactivateStar}
+                                                    </div>
+                                                </>
+                                            ) : null}
+                                        </div>
+                                        {/* File Entry Name */}
+                                        <div
+                                            className={
+                                                classes.listFileEntryName +
+                                                ' qw-filename'
+                                            }
+                                            data-chonky-file-id={
+                                                file?.id ? file.id : ''
+                                            }
+                                        >
+                                            <FileEntryName
+                                                file={file}
+                                                tags={tags}
+                                                esignStatus={esignStatus}
+                                                conversionInProgress={
+                                                    conversionInProgress
+                                                }
+                                                conversionFailed={conversionFailed}
+                                                conversionCompleted={
+                                                    conversionCompleted
+                                                }
+                                                translateInProgress={
+                                                    translateInProgress
+                                                }
+                                                translationFailed={translationFailed}
+                                                multipleSelect={multipleSelect}
+                                                domainName={domainName}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="qw-tagiconlist">
+                                    {fileTags?.length ? (
+                                        <div
+                                            className="chonky-tags"
+                                            data-chonky-file-id={
+                                                file?.id ? file.id : ''
+                                            }
+                                        >
+                                            {fileTags?.map(
+                                                (tag: string, index: number) => (
+                                                    <span
+                                                        className={
+                                                            'tags-' +
+                                                            index.toString() +
+                                                            '-' +
+                                                            tag
+                                                        }
+                                                        key={index.toString() + tag}
+                                                        data-chonky-file-id={
+                                                            file?.id ? file.id : ''
+                                                        }
+                                                    >
+                                                        {tag}
+                                                    </span>
+                                                )
+                                            )}
+                                        </div>
+                                    ) : null}
+                                    {esignCurrentStatus != '' ? (
+                                        <div
+                                            className="chonky-esign-status"
+                                            data-chonky-file-id={
+                                                file?.id ? file.id : ''
+                                            }
+                                        >
+                                            {esignCurrentStatus}
+                                        </div>
+                                    ) : null}
+                                    {file?.isConversionInProgress &&
+                                        conversionInProgress}
+                                    {file?.isConversionFailed && conversionFailed}
+                                    {file?.isConversionCompleted && conversionCompleted}
+                                    {file?.isTranslateInProgress && translateInProgress}
+                                    {file?.isTranslationFailed && translationFailed}
+                                </div>
+
+                                {/* Search Results */}
+                                {file?.isSearchResults && file?.folderPath ? (
+                                    <div
+                                        className={classes.listFileSearch}
+                                        data-chonky-file-id={file?.id ? file.id : ''}
+                                    >
+                                        {dotsInFiles(file?.folderPath)}
+                                        <span
+                                            className="list-file-search-tooltip"
+                                            data-chonky-file-id={
+                                                file?.id ? file.id : ''
+                                            }
+                                        >
+                                            {file?.folderPath}
+                                        </span>
+                                    </div>
+                                ) : null}
+
+                                {/* File Size */}
+                                <div
+                                    className={classes.listFileSizeProperty}
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    {file ? (
+                                        fileSizeString ?? <span>—</span>
+                                    ) : (
+                                        <TextPlaceholder
+                                            minLength={10}
+                                            maxLength={20}
+                                        />
+                                    )}
+                                </div>
+
+                                {/* File Sharing Status */}
+                                <div
+                                    className={classes.listFileShared}
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    {file?.isShared
+                                        ? sharedOrPrivate?.sharedText
+                                        : sharedOrPrivate?.privateText}
+                                </div>
+
+                                {moreToolAction}
+                            </div>
+                        </span>
+                    </>
+                ) : (
+                    <>
+                        <div
+                            className={`${classes.listFileEntry} ${
+                                file?.isChecked ? 'is-checked' : ''
+                            }`}
+                            {...fileEntryHtmlProps}
+                        >
                             <div className={commonClasses.focusIndicator}></div>
-                            <div className={c([commonClasses.selectionIndicator, classes.listFileEntrySelection])}></div>
+                            <div
+                                className={c([
+                                    commonClasses.selectionIndicator,
+                                    classes.listFileEntrySelection,
+                                ])}
+                            ></div>
 
-                            {/* File Entry Icon */}
-                            <div className={classes.listFileEntryIcon + " qw-listIcon"} data-chonky-file-id={file?.id ? file.id : ''}>
+                            <div className={classes.listFileEntryStar}>
+                                {!file?.isDir ? (
+                                    <>
+                                        <div
+                                            className={file?.id ? file.id : ''}
+                                            data-row-id={file?.id ? file.id : ''}
+                                        >
+                                            {file?.isStarred
+                                                ? activeStar
+                                                : deactivateStar}
+                                        </div>
+                                    </>
+                                ) : null}
+                            </div>
+
+                            <div className={classes.listFileEntryIcon}>
                                 <ChonkyIcon
                                     icon={dndIconName ?? entryState.icon}
                                     spin={dndIconName ? false : entryState.iconSpin}
@@ -59,30 +313,34 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                     file={file}
                                 />
                             </div>
+
                             <div className="wrap-content">
-                                {/* File Entry Property (Moved above Name) */}
-                                <div className={classes.listFileEntryProperty + " qw-property"} data-chonky-file-id={file?.id ? file.id : ''}>
+                                <div
+                                    className={
+                                        classes.listFileEntryProperty + ' qw-property'
+                                    }
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
                                     {file ? (
                                         <span>
-                                            {qwModifiedText} {fileModDateString ?? <span>—</span>}
+                                            {qwModifiedText}{' '}
+                                            {fileModDateString ?? <span>—</span>}
                                         </span>
                                     ) : (
                                         <TextPlaceholder minLength={5} maxLength={15} />
                                     )}
                                 </div>
                                 <div className="name-star-container">
-                                    {/* File Entry Star (Moved after Icon) */}
-                                    <div className={classes.listFileEntryStar + " qw-starred"} data-chonky-file-id={file?.id ? file.id : ''}>
-                                        {!file?.isDir ? (
-                                            <>
-                                                <div className={file?.id ? file.id : ''} data-row-id={file?.id ? file.id : ''} data-chonky-file-id={file?.id ? file.id : ''}>
-                                                    {file?.isStarred ? activeStar : deactivateStar}
-                                                </div>
-                                            </>
-                                        ) : null}
-                                    </div>
-                                    {/* File Entry Name */}
-                                    <div className={classes.listFileEntryName + " qw-filename"} data-chonky-file-id={file?.id ? file.id : ''}>
+                                    {/* <div className={classes.listFileEntryStar + " qw-starred"} data-chonky-file-id={file?.id ? file.id : ''}>
+                                        <div className={file?.id ? file.id : ''} data-row-id={file?.id ? file.id : ''} data-chonky-file-id={file?.id ? file.id : ''}>
+                                            {file?.isStarred ? activeStar : deactivateStar}
+                                        </div>
+                                    </div> */}
+                                    <div
+                                        className={
+                                            classes.listFileEntryName + ' qw-filename'
+                                        }
+                                    >
                                         <FileEntryName
                                             file={file}
                                             tags={tags}
@@ -97,116 +355,14 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                         />
                                     </div>
                                 </div>
-
-                            </div>
-                            <div className="qw-tagiconlist">
-                                {fileTags?.length ? (
-                                    <div className="chonky-tags" data-chonky-file-id={file?.id ? file.id : ''}>
-                                        {fileTags?.map((tag: string, index: number) => (
-                                            <span className={'tags-' + index.toString() + '-' + tag} key={index.toString() + tag} data-chonky-file-id={file?.id ? file.id : ''}>{tag}</span>
-                                        ))}
-                                    </div>)
-                                    : null}
-                                {esignCurrentStatus != "" ? (<div className="chonky-esign-status" data-chonky-file-id={file?.id ? file.id : ''}>
-                                    {esignCurrentStatus}
-                                </div>) : null}
-                                {file?.isConversionInProgress && conversionInProgress}
-                                {file?.isConversionFailed && conversionFailed}
-                                {file?.isConversionCompleted && conversionCompleted}
-                                {file?.isTranslateInProgress && translateInProgress}
-                                {file?.isTranslationFailed && translationFailed}
-
                             </div>
 
-
-
-                            {/* Search Results */}
-                            {file?.isSearchResults && file?.folderPath ? (
-                                <div className={classes.listFileSearch} data-chonky-file-id={file?.id ? file.id : ''}>
-                                    {dotsInFiles(file?.folderPath)}
-                                    <span className="list-file-search-tooltip" data-chonky-file-id={file?.id ? file.id : ''}>{file?.folderPath}</span>
-                                </div>
-                            ) : null}
-
-                            {/* File Size */}
-                            <div className={classes.listFileSizeProperty} data-chonky-file-id={file?.id ? file.id : ''}>
-                                {file ? (
-                                    fileSizeString ?? <span>—</span>
-                                ) : (
-                                    <TextPlaceholder minLength={10} maxLength={20} />
-                                )}
-                            </div>
-
-                            {/* File Sharing Status */}
-                            <div className={classes.listFileShared} data-chonky-file-id={file?.id ? file.id : ''}>
-                                {file?.isShared ? sharedOrPrivate?.sharedText : sharedOrPrivate?.privateText}
-                            </div>
-
-                            {moreToolAction}
-                        </div>
-                    </span>
-
-                </>
-                    :
-                    <>
-                        <div className={`${classes.listFileEntry} ${file?.isChecked ? 'is-checked' : ''}`} {...fileEntryHtmlProps}
-                        >
-                            <div className={commonClasses.focusIndicator}></div>
-                            <div
-                                className={c([
-                                    commonClasses.selectionIndicator,
-                                    classes.listFileEntrySelection,
-                                ])}
-                            ></div>
-
-                            <div className={classes.listFileEntryStar}>
-                                {!file?.isDir ? (
-                                    <>
-                                        <div className={file?.id ? file.id : ''} data-row-id={file?.id ? file.id : ''}>
-                                            {file?.isStarred ? activeStar : deactivateStar}
-                                        </div>
-                                    </>
-                                ) : null
-                                }
-                            </div>
-
-                            <div className={classes.listFileEntryIcon}>
-                                <ChonkyIcon
-                                    icon={dndIconName ?? entryState.icon}
-                                    spin={dndIconName ? false : entryState.iconSpin}
-                                    fixedWidth={true}
-                                    file={file}
-                                />
-                            </div>
-
-                            <div className="wrap-content">
-                                <div className={classes.listFileEntryProperty + " qw-property"} data-chonky-file-id={file?.id ? file.id : ''}>
-                                    {file ? (
-                                        <span>
-                                            {qwModifiedText} {fileModDateString ?? <span>—</span>}
-                                        </span>
-                                    ) : (
-                                        <TextPlaceholder minLength={5} maxLength={15} />
-                                    )}
-                                </div>
-                                <div className="name-star-container">
-                                    {/* <div className={classes.listFileEntryStar + " qw-starred"} data-chonky-file-id={file?.id ? file.id : ''}>
-                                        <div className={file?.id ? file.id : ''} data-row-id={file?.id ? file.id : ''} data-chonky-file-id={file?.id ? file.id : ''}>
-                                            {file?.isStarred ? activeStar : deactivateStar}
-                                        </div>
-                                    </div> */}
-                                    <div
-                                        className={classes.listFileEntryName + " qw-filename"}
-                                    >
-                                        <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed} multipleSelect={multipleSelect} domainName={domainName} />
-                                    </div>
-                                </div>
-                            </div>
-                           
                             {file?.isSearchResults && file?.folderPath ? (
                                 <div className={classes.listFileSearch}>
                                     {dotsInFiles(file?.folderPath)}
-                                    <span className="list-file-search-tooltip">{file?.folderPath}</span>
+                                    <span className="list-file-search-tooltip">
+                                        {file?.folderPath}
+                                    </span>
                                 </div>
                             ) : null}
                             {/* <div className={classes.listFileEntryProperty}>
@@ -225,12 +381,15 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                             </div>
                             <div className={classes.listFileShared}>
                                 {/* {file?.isShared ? 'Shared': 'Private'} */}
-                                {file?.isShared ? sharedOrPrivate?.sharedText : sharedOrPrivate?.privateText}
+                                {file?.isShared
+                                    ? sharedOrPrivate?.sharedText
+                                    : sharedOrPrivate?.privateText}
                             </div>
                             {moreToolAction}
-                        </div></>}
+                        </div>
+                    </>
+                )}
             </>
-
         );
     }
 );
