@@ -130,25 +130,21 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                                 file?.id ? file.id : ''
                                             }
                                         >
-                                            {!file?.isDir ? (
-                                                <>
-                                                    <div
-                                                        className={
-                                                            file?.id ? file.id : ''
-                                                        }
-                                                        data-row-id={
-                                                            file?.id ? file.id : ''
-                                                        }
-                                                        data-chonky-file-id={
-                                                            file?.id ? file.id : ''
-                                                        }
-                                                    >
-                                                        {file?.isStarred
-                                                            ? activeStar
-                                                            : deactivateStar}
-                                                    </div>
-                                                </>
-                                            ) : null}
+                                            <>
+                                                <div
+                                                    className={file?.id ? file.id : ''}
+                                                    data-row-id={
+                                                        file?.id ? file.id : ''
+                                                    }
+                                                    data-chonky-file-id={
+                                                        file?.id ? file.id : ''
+                                                    }
+                                                >
+                                                    {file?.isStarred
+                                                        ? activeStar
+                                                        : deactivateStar}
+                                                </div>
+                                            </>
                                         </div>
                                         {/* File Entry Name */}
                                         <div

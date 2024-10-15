@@ -31,7 +31,10 @@ export const QwGridEntry: React.FC<FileEntryProps> = React.memo(
             [classes.gridFileEntry]: true,
         });
         return (
-            <div className={entryClassName} {...fileEntryHtmlProps}>
+            <div
+                className={`${entryClassName} ${file?.isChecked ? 'is-checked' : ''}`}
+                {...fileEntryHtmlProps}
+            >
                 {isDirectory ? (
                     <GridEntryPreviewFolder
                         className={classes.gridFileEntryPreview}
