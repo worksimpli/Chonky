@@ -299,18 +299,14 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                             ></div>
 
                             <div className={classes.listFileEntryStar}>
-                                {!file?.isDir ? (
-                                    <>
-                                        <div
-                                            className={file?.id ? file.id : ''}
-                                            data-row-id={file?.id ? file.id : ''}
-                                        >
-                                            {file?.isStarred
-                                                ? activeStar
-                                                : deactivateStar}
-                                        </div>
-                                    </>
-                                ) : null}
+                                <>
+                                    <div
+                                        className={file?.id ? file.id : ''}
+                                        data-row-id={file?.id ? file.id : ''}
+                                    >
+                                        {file?.isStarred ? activeStar : deactivateStar}
+                                    </div>
+                                </>
                             </div>
 
                             <div className={classes.listFileEntryIcon}>
