@@ -31,7 +31,10 @@ export const QwGridEntry: React.FC<FileEntryProps> = React.memo(
             [classes.gridFileEntry]: true,
         });
         return (
-            <div className={entryClassName} {...fileEntryHtmlProps}>
+            <div
+                className={`${entryClassName} ${file?.isChecked ? 'is-checked' : ''}`}
+                {...fileEntryHtmlProps}
+            >
                 {isDirectory ? (
                     <GridEntryPreviewFolder
                         className={classes.gridFileEntryPreview}
@@ -71,7 +74,7 @@ export const QwGridEntry: React.FC<FileEntryProps> = React.memo(
                     className="qwgridStarContainer"
                     data-chonky-file-id={file?.id ? file.id : ''}
                 >
-                    {file?.isStarred ? activeStar : deactivateStar}
+                    {/* {file?.isStarred ? activeStar : deactivateStar} */}
                     {moreToolAction}
                 </div>
             </div>
