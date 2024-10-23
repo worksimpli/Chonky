@@ -86,7 +86,9 @@ export const QwGridEntry: React.FC<FileEntryProps> = React.memo(
                             </div>
                         </>
                     ) : null}
-                    {moreToolAction}
+                     <div className='gridviewMoretoolbtn' data-chonky-file-id={file?.id ? file.id: ''}>
+                     {moreToolAction}</div>
+                   
                 </div>
             </div>
         );
