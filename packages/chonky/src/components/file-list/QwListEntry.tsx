@@ -281,8 +281,7 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                         ? sharedOrPrivate?.sharedText
                                         : sharedOrPrivate?.privateText}
                                 </div>
-                               {!file?.isDir ? 
-                                    moreToolAction : ""}
+                               {moreToolAction}
                             </div>
                         </span>
                     </>
