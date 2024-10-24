@@ -7900,7 +7900,7 @@ chokidar@^3.4.1, chokidar@^3.4.2, chokidar@^3.5.1, chokidar@^3.5.3:
     chonky "^2.3.2"
 
 "chonky-worksimpli@file:C:\\Projects\\Chonky\\packages\\chonky":
-  version "0.0.42"
+  version "0.0.43"
   resolved "file:packages/chonky"
   dependencies:
     "@material-ui/core" "4.11.3"

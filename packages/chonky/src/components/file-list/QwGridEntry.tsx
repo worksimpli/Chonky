@@ -75,7 +75,8 @@ export const QwGridEntry: React.FC<FileEntryProps> = React.memo(
                     data-chonky-file-id={file?.id ? file.id : ''}
                 >
                     {/* {file?.isStarred ? activeStar : deactivateStar} */}
-                    {moreToolAction}
+                    {!file?.isDir ?
+                        moreToolAction : ""}
                 </div>
             </div>
         );
