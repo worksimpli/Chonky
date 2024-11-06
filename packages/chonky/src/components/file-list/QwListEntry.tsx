@@ -281,8 +281,7 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                         ? sharedOrPrivate?.sharedText
                                         : sharedOrPrivate?.privateText}
                                 </div>
-                                <div className='listviewMoretoolbtn' data-chonky-file-id={file?.id ? file.id: ''}>
-                                {moreToolAction}</div>
+                               {moreToolAction}
                             </div>
                         </span>
                     </>
@@ -397,7 +396,8 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
                                     ? sharedOrPrivate?.sharedText
                                     : sharedOrPrivate?.privateText}
                             </div>
-                            {moreToolAction}
+                                {!file?.isDir ?
+                                    moreToolAction : ""}
                         </div>
                     </>
                 )}
