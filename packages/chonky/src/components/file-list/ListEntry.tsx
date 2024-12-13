@@ -84,6 +84,14 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                         <span className="list-file-search-tooltip" data-chonky-file-id={file?.id ? file.id: ''}>{file?.folderPath}</span>
                     </div>
                 ): null}
+                 {file?.isDir ? (
+                    <>
+                    <div className="folder-child-count" data-chonky-file-id={file?.id ? file.id: ''}>
+                    {file?.childItemCount ? file?.childItemCount :``}
+                    </div>
+                    </>
+                    ) : null
+                }
                 {/* {file?.isDocConverted && conversionInProgress}
                 {file?.isConversionFailed && conversionFailed} */}
                 <div className={classes.listFileEntryProperty} data-chonky-file-id={file?.id ? file.id: ''}>
