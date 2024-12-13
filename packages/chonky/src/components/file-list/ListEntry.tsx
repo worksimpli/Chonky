@@ -84,7 +84,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                         <span className="list-file-search-tooltip" data-chonky-file-id={file?.id ? file.id: ''}>{file?.folderPath}</span>
                     </div>
                 ): null}
-                 {file?.isDir ? (
+                 {file?.childItemCount && file.childItemCount > 0 ? (
                     <>
                     <div className="folder-child-count" data-chonky-file-id={file?.id ? file.id: ''}>
                     {file?.childItemCount ? file?.childItemCount :``}
