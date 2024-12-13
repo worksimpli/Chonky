@@ -176,7 +176,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                     {/* {file?.isShared ? 'Shared': 'Private'} */}
                     {file?.isShared ? sharedOrPrivate?.sharedText: sharedOrPrivate?.privateText}
                 </div>
-                {moreToolAction}
+                {/* {moreToolAction} */}
             </div></>}
             </>
             
