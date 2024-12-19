@@ -153,7 +153,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                 
                 {file?.childItemCount && file?.childItemCount>0 ? (
                     <>
-                    <div className="folder-child-count" data-chonky-file-id={file?.id ? file.id: ''}>
+                    <div className={classes.listFileTotalItems+" folder-child-count"} data-chonky-file-id={file?.id ? file.id: ''}>
                     {file?.childItemCount ? file?.childItemCount :``}
                     </div>
                     </>
@@ -249,6 +249,15 @@ const useStyles = makeLocalChonkyStyles(theme => ({
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         flex: '0 1 150px',
+        padding: [2, 8],
+        zIndex: 20,
+    },
+    listFileTotalItems: {
+        fontSize: theme.listFileEntry.propertyFontSize,
+        boxSizing: 'border-box',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        flex: '0 1 115px',
         padding: [2, 8],
         zIndex: 20,
     },
