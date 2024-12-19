@@ -290,7 +290,7 @@ const useHeaderStyles = makeLocalChonkyStyles(theme => ({
         boxSizing: 'border-box',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
-        flex: '0 1 80px',
+        flex: '0 1 120px',
         padding: [2, 8],
         zIndex: 20,
     },
