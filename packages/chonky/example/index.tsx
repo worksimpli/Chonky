@@ -85,10 +85,10 @@ const App = () => {
                 conversionCompleted={<div></div>}
                 translateInProgress={<div></div>}
                 translationFailed={<div></div>}
-                multipleSelect={false}
                 domainName={<div>domainName</div>}
                 qwModifiedText={<div>qwModifiedText</div>}
                 listContainerClass=""
+                totalItemsColumn={"Total Items"}
             />
         </div>
     );

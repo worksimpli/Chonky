@@ -48,10 +48,11 @@ export interface FileListListProps {
     multipleSelect?: React.ReactElement<any, any>;
     domainName?: string;
     qwModifiedText?: string;
+    totalItemsColumn?: string;
 }
 
 export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
-    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, listContainerClass, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText } = props;
+    const { width, height, fileListStyle = { height: 0 }, activeStar, deactivateStar, tags, listContainerClass, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText,totalItemsColumn } = props;
 
     const viewConfig = useSelector(selectFileViewConfig);
 
@@ -92,6 +93,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
                         multipleSelect={multipleSelect}
                         domainName={domainName}
                         qwModifiedText={qwModifiedText}
+                        totalItemsColumn={totalItemsColumn}
                     />
                 </div>
             );

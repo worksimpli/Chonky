@@ -210,4 +210,5 @@ export interface FileBrowserProps {
     multipleSelect?: React.ReactElement<any, any>;
     domainName?: string;
     qwModifiedText?: string;
+    totalItemsColumn?: string;
 }

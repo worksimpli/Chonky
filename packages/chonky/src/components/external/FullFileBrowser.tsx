@@ -41,6 +41,7 @@ export const FullFileBrowser = React.memo(
                     multipleSelect={multipleSelect}
                     domainName={domainName}
                     qwModifiedText={qwModifiedText}
+                    totalItemsColumn={totalItemsColumn}
                 />
                 <FileContextMenu />
             </FileBrowser>
