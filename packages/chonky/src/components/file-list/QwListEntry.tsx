@@ -40,7 +40,6 @@ export const QwListEntry: React.FC<FileEntryProps> = React.memo(
         multipleSelect,
         domainName,
         qwModifiedText,
-        totalItemsColumn,
     }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
