@@ -54,6 +54,7 @@ export interface SmartFileEntryProps {
     multipleSelect?: React.ReactElement<any, any>;
     domainName?: string;
     qwModifiedText?: string;
+    totalItemsColumn?: string;
 }
 
 const disabledDndState: DndEntryState = {
@@ -84,7 +85,7 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
         translationFailed,
         multipleSelect,
         domainName,
-        qwModifiedText,
+        qwModifiedText,totalItemsColumn,
     }) => {
         const classes = useStyles();
 
@@ -130,6 +131,7 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
             multipleSelect,
             domainName,
             qwModifiedText,
+            totalItemsColumn,
         };
 
         let EntryComponent: React.FC<FileEntryProps>;

@@ -54,6 +54,7 @@ export interface FileListProps {
     multipleSelect?: React.ReactElement<any, any>;
     domainName?: string;
     qwModifiedText?: string;
+    totalItemsColumn?: string;
 }
 
 interface StyleState {
@@ -75,7 +76,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
     const localClasses = useLocalStyles(styleState);
     const classes = useStyles(viewConfig);
     const headerClasses =useHeaderStyles();
-    const { onScroll, fileListStyle, activeStar, deactivateStar, tags, listContainerClass, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText } = props;
+    const { onScroll, fileListStyle, activeStar, deactivateStar, tags, listContainerClass, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText,totalItemsColumn } = props;
 
     // In Chonky v0.x, this field was user-configurable. In Chonky v1.x+, we hardcode
     // this to `true` to simplify configuration. Users can just wrap Chonky in their
@@ -92,51 +93,60 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
                   };
                 return (
                     <>
-                    <div className={"list-header "+headerClasses.listFileEntry} style={listStyleWidth}>
-                        <div className={headerClasses.listFileEntryStar}></div>
+                        <div
+                            className={'list-header ' + headerClasses.listFileEntry}
+                            style={listStyleWidth}
+                        >
+                            <div className={headerClasses.listFileEntryStar}></div>
 
-                        <div className={headerClasses.listFileEntryIcon}></div>
-                        <div className={headerClasses.listFileEntryName}>
-                        {listHeader ? listHeader?.name :""}
+                            <div className={headerClasses.listFileEntryIcon}></div>
+                            <div className={headerClasses.listFileEntryName}>
+                                {listHeader ? listHeader?.name : ''}
+                            </div>
+                            {listHeader?.location && (
+                                <div className={headerClasses.listFileSearch}>
+                                    {listHeader ? listHeader?.location : ''}
+                                </div>
+                            )}
+                            {totalItemsColumn ? (
+                                <div className={headerClasses.listFileTotalItems}>
+                                    {totalItemsColumn}
+                                </div>
+                            ) : null}
+                            <div className={headerClasses.listFileEntryProperty}>
+                                {listHeader ? listHeader?.modified : ''}
+                            </div>
+                            <div className={headerClasses.listFileShared}>
+                                {listHeader ? listHeader?.sharing : ''}
+                            </div>
                         </div>
-                        {listHeader?.location && <div className={headerClasses.listFileSearch}>
-                            {listHeader ? listHeader?.location :""}
-                        </div>}
-                       
-                        <div className={headerClasses.listFileEntryProperty}>
-                        {listHeader ? listHeader?.modified :""}
+                        <div className="lisitemView">
+                            <ListContainer
+                                width={width}
+                                height={height}
+                                fileListStyle={fileListStyle}
+                                activeStar={activeStar}
+                                deactivateStar={deactivateStar}
+                                tags={tags}
+                                sharedOrPrivate={sharedOrPrivate}
+                                listContainerClass={listContainerClass}
+                                listHeader={listHeader}
+                                moreToolAction={moreToolAction}
+                                esignStatus={esignStatus}
+                                onFileDoubleClickHandler={onFileDoubleClickHandler}
+                                nothingToShowLabel={nothingToShowLabel}
+                                conversionInProgress={conversionInProgress}
+                                conversionFailed={conversionFailed}
+                                conversionCompleted={conversionCompleted}
+                                translateInProgress={translateInProgress}
+                                translationFailed={translationFailed}
+                                multipleSelect={multipleSelect}
+                                domainName={domainName}
+                                qwModifiedText={qwModifiedText}
+                                totalItemsColumn={totalItemsColumn}
+                            />
                         </div>
-                        <div className={headerClasses.listFileShared}>
-                        {listHeader ? listHeader?.sharing :""}
-                        </div>
-                    </div>
-                      <div className='lisitemView'>
-                     <ListContainer
-                        width={width}
-                        height={height}
-                        fileListStyle={fileListStyle}
-                        activeStar={activeStar}
-                        deactivateStar={deactivateStar}
-                        tags={tags}
-                        sharedOrPrivate={sharedOrPrivate}
-                        listContainerClass={listContainerClass}
-                        listHeader={listHeader}
-                        moreToolAction={moreToolAction}
-                        esignStatus={esignStatus}
-                        onFileDoubleClickHandler={onFileDoubleClickHandler}
-                        nothingToShowLabel={nothingToShowLabel}
-                        conversionInProgress={conversionInProgress}
-                        conversionFailed={conversionFailed}
-                        conversionCompleted={conversionCompleted}
-                        translateInProgress={translateInProgress}
-                        translationFailed={translationFailed}
-                        multipleSelect={multipleSelect}
-                        domainName={domainName}
-                        qwModifiedText={qwModifiedText}
-                    />
-                   </div>
                     </>
-                  
                 );
             } else {
                 return (
@@ -272,6 +282,15 @@ const useHeaderStyles = makeLocalChonkyStyles(theme => ({
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         flex: '0 1 200px',
+        padding: [2, 8],
+        zIndex: 20,
+    },
+    listFileTotalItems: {
+        fontSize: theme.listFileEntry.propertyFontSize,
+        boxSizing: 'border-box',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        flex: '0 1 80px',
         padding: [2, 8],
         zIndex: 20,
     },
