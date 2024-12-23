@@ -151,13 +151,13 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                     </div>
                 ): null}
                 
-                {file?.childItemCount && file?.childItemCount>0 ? (
+                {file?.childItemCount ? (
                     <>
                     <div className={classes.listFileTotalItems+" folder-child-count"} data-chonky-file-id={file?.id ? file.id: ''}>
                     {file?.childItemCount ? file?.childItemCount :``}
                     </div>
                     </>
-                    ) : null
+                    ) :  <div className={classes.listFileTotalItems+" folder-child-count"} data-chonky-file-id={file?.id ? file.id: ''}></div>
                 }
                 <div className={classes.listFileEntryProperty}>
                     {file ? (
