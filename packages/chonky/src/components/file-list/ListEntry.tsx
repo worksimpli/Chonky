@@ -41,146 +41,245 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
         const DomainEnum = domainName;
         return (
             <>
-            {!file?.isDir ?<>
-                <span onDoubleClick={onFileDoubleClickHandler?.dblRowobj} data-chonky-file-id={file?.id ? file.id: ''}>
-            <div className={`${classes.listFileEntry} ${file?.isChecked ? 'is-checked': ''}`} {...fileEntryHtmlProps} >
-              
-                <div className={commonClasses.focusIndicator}></div>
-                <div
-                    className={c([
-                        commonClasses.selectionIndicator,
-                        classes.listFileEntrySelection,
-                    ])}
-                ></div>
-                
-                <div className={classes.listFileEntryStar} data-chonky-file-id={file?.id ? file.id: ''}>
                 {!file?.isDir ? (
                     <>
-                    <div className={file?.id ? file.id: ''} data-row-id={file?.id ? file.id: ''} data-chonky-file-id={file?.id ? file.id: ''}>
-                    {file?.isStarred ? activeStar : deactivateStar}
-                    </div>
-                    </>
-                    ) : null
-                }
-                </div>
-                    
-                <div className={classes.listFileEntryIcon}  data-chonky-file-id={file?.id ? file.id: ''}>
-                    <ChonkyIcon
-                        icon={dndIconName ?? entryState.icon}
-                        spin={dndIconName ? false : entryState.iconSpin}
-                        fixedWidth={true}
-                        file={file}
-                    />
-                </div>
-                <div
-                    className={classes.listFileEntryName}
-                    // title={file ? file.name : undefined} 
-                    data-chonky-file-id={file?.id ? file.id: ''}>
-                    <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed} multipleSelect={multipleSelect} domainName={domainName}/>
-                </div>
-                {file?.isSearchResults && file?.folderPath ? (
-                    <div className={classes.listFileSearch} data-chonky-file-id={file?.id ? file.id: ''}>
-                        {dotsInFiles(file?.folderPath)}
-                        <span className="list-file-search-tooltip" data-chonky-file-id={file?.id ? file.id: ''}>{file?.folderPath}</span>
-                    </div>
-                ): null}
-                {/* {file?.isDocConverted && conversionInProgress}
+                        <span
+                            onDoubleClick={onFileDoubleClickHandler?.dblRowobj}
+                            data-chonky-file-id={file?.id ? file.id : ''}
+                        >
+                            <div
+                                className={`${classes.listFileEntry} ${
+                                    file?.isChecked ? 'is-checked' : ''
+                                }`}
+                                {...fileEntryHtmlProps}
+                            >
+                                <div className={commonClasses.focusIndicator}></div>
+                                <div
+                                    className={c([
+                                        commonClasses.selectionIndicator,
+                                        classes.listFileEntrySelection,
+                                    ])}
+                                ></div>
+
+                                <div
+                                    className={classes.listFileEntryStar}
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    {!file?.isDir ? (
+                                        <>
+                                            <div
+                                                className={file?.id ? file.id : ''}
+                                                data-row-id={file?.id ? file.id : ''}
+                                                data-chonky-file-id={
+                                                    file?.id ? file.id : ''
+                                                }
+                                            >
+                                                {file?.isStarred
+                                                    ? activeStar
+                                                    : deactivateStar}
+                                            </div>
+                                        </>
+                                    ) : null}
+                                </div>
+
+                                <div
+                                    className={classes.listFileEntryIcon}
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    <ChonkyIcon
+                                        icon={dndIconName ?? entryState.icon}
+                                        spin={dndIconName ? false : entryState.iconSpin}
+                                        fixedWidth={true}
+                                        file={file}
+                                    />
+                                </div>
+                                <div
+                                    className={classes.listFileEntryName}
+                                    // title={file ? file.name : undefined}
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    <FileEntryName
+                                        file={file}
+                                        tags={tags}
+                                        esignStatus={esignStatus}
+                                        conversionInProgress={conversionInProgress}
+                                        conversionFailed={conversionFailed}
+                                        conversionCompleted={conversionCompleted}
+                                        translateInProgress={translateInProgress}
+                                        translationFailed={translationFailed}
+                                        multipleSelect={multipleSelect}
+                                        domainName={domainName}
+                                    />
+                                </div>
+                                {file?.isSearchResults && file?.folderPath ? (
+                                    <div
+                                        className={classes.listFileSearch}
+                                        data-chonky-file-id={file?.id ? file.id : ''}
+                                    >
+                                        {dotsInFiles(file?.folderPath)}
+                                        <span
+                                            className="list-file-search-tooltip"
+                                            data-chonky-file-id={
+                                                file?.id ? file.id : ''
+                                            }
+                                        >
+                                            {file?.folderPath}
+                                        </span>
+                                    </div>
+                                ) : null}
+                                {/* {file?.isDocConverted && conversionInProgress}
                 {file?.isConversionFailed && conversionFailed} */}
-                <div className={classes.listFileEntryProperty} data-chonky-file-id={file?.id ? file.id: ''}>
-                    {file ? (
-                        fileModDateString ?? <span>—</span>
-                    ) : (
-                        <TextPlaceholder minLength={5} maxLength={15} />
-                    )}
-                </div>
-                <div className={classes.listFileSizeProperty} data-chonky-file-id={file?.id ? file.id: ''}>
-                    {file ? (
-                        fileSizeString ?? <span>—</span>
-                    ) : (
-                        <TextPlaceholder minLength={10} maxLength={20} />
-                    )}
-                </div>
-                <div className={classes.listFileShared} data-chonky-file-id={file?.id ? file.id: ''}>
-                    {/* {file?.isShared ? 'Shared': 'Private'} */}
-                    {file?.isShared ? sharedOrPrivate?.sharedText: sharedOrPrivate?.privateText}
-                </div>
-                {moreToolAction}
-            </div></span>
-            </>
-            :
-            <>
-            <div className={`${classes.listFileEntry} ${file?.isChecked ? 'is-checked': ''}`} {...fileEntryHtmlProps} 
-            >
-                <div className={commonClasses.focusIndicator}></div>
-                <div
-                    className={c([
-                        commonClasses.selectionIndicator,
-                        classes.listFileEntrySelection,
-                    ])}
-                ></div>
-                
-                <div className={classes.listFileEntryStar}>
-                {!file?.isDir ? (
-                    <>
-                    <div className={file?.id ? file.id: ''} data-row-id={file?.id ? file.id: ''}>
-                    {file?.isStarred ? activeStar : deactivateStar}
-                    </div>
+                                <div
+                                    className={classes.listFileEntryProperty}
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    {file ? (
+                                        fileModDateString ?? <span>—</span>
+                                    ) : (
+                                        <TextPlaceholder minLength={5} maxLength={15} />
+                                    )}
+                                </div>
+                                <div
+                                    className={classes.listFileSizeProperty}
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    {file ? (
+                                        fileSizeString ?? <span>—</span>
+                                    ) : (
+                                        <TextPlaceholder
+                                            minLength={10}
+                                            maxLength={20}
+                                        />
+                                    )}
+                                </div>
+                                <div
+                                    className={classes.listFileShared}
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    {/* {file?.isShared ? 'Shared': 'Private'} */}
+                                    {file?.isShared
+                                        ? sharedOrPrivate?.sharedText
+                                        : sharedOrPrivate?.privateText}
+                                </div>
+                                {moreToolAction}
+                            </div>
+                        </span>
                     </>
-                    ) : null
-                }
-                </div>
-                    
-                <div className={classes.listFileEntryIcon}>
-                    <ChonkyIcon
-                        icon={dndIconName ?? entryState.icon}
-                        spin={dndIconName ? false : entryState.iconSpin}
-                        fixedWidth={true}
-                        file={file}
-                    />
-                </div>
-                <div
-                    className={classes.listFileEntryName}
-                    // title={file ? file.name : undefined}
-                >
-                    <FileEntryName file={file} tags={tags} esignStatus={esignStatus} conversionInProgress={conversionInProgress} conversionFailed={conversionFailed} conversionCompleted={conversionCompleted} translateInProgress={translateInProgress} translationFailed={translationFailed} multipleSelect={multipleSelect}  domainName={domainName}/>
-                </div>
-                {file?.isSearchResults && file?.folderPath ? (
-                    <div className={classes.listFileSearch}>
-                        {dotsInFiles(file?.folderPath)}
-                        <span className="list-file-search-tooltip">{file?.folderPath}</span>
-                    </div>
-                ): null}
-                
-                {file?.childItemCount && file?.childItemCount>0 ? (
+                ) : (
                     <>
-                    <div className={classes.listFileTotalItems+" folder-child-count"} data-chonky-file-id={file?.id ? file.id: ''}>
-                    {file?.childItemCount ? file?.childItemCount :``}
-                    </div>
+                        <div
+                            className={`${classes.listFileEntry} ${
+                                file?.isChecked ? 'is-checked' : ''
+                            }`}
+                            {...fileEntryHtmlProps}
+                        >
+                            <div className={commonClasses.focusIndicator}></div>
+                            <div
+                                className={c([
+                                    commonClasses.selectionIndicator,
+                                    classes.listFileEntrySelection,
+                                ])}
+                            ></div>
+
+                            <div className={classes.listFileEntryStar}>
+                                {!file?.isDir ? (
+                                    <>
+                                        <div
+                                            className={file?.id ? file.id : ''}
+                                            data-row-id={file?.id ? file.id : ''}
+                                        >
+                                            {file?.isStarred
+                                                ? activeStar
+                                                : deactivateStar}
+                                        </div>
+                                    </>
+                                ) : null}
+                            </div>
+
+                            <div className={classes.listFileEntryIcon}>
+                                <ChonkyIcon
+                                    icon={dndIconName ?? entryState.icon}
+                                    spin={dndIconName ? false : entryState.iconSpin}
+                                    fixedWidth={true}
+                                    file={file}
+                                />
+                            </div>
+                            <div
+                                className={classes.listFileEntryName}
+                                // title={file ? file.name : undefined}
+                            >
+                                <FileEntryName
+                                    file={file}
+                                    tags={tags}
+                                    esignStatus={esignStatus}
+                                    conversionInProgress={conversionInProgress}
+                                    conversionFailed={conversionFailed}
+                                    conversionCompleted={conversionCompleted}
+                                    translateInProgress={translateInProgress}
+                                    translationFailed={translationFailed}
+                                    multipleSelect={multipleSelect}
+                                    domainName={domainName}
+                                />
+                            </div>
+                            {file?.isSearchResults && file?.folderPath ? (
+                                <div className={classes.listFileSearch}>
+                                    {dotsInFiles(file?.folderPath)}
+                                    <span className="list-file-search-tooltip">
+                                        {file?.folderPath}
+                                    </span>
+                                </div>
+                            ) : null}
+
+                            {file?.childItemCount && file?.childItemCount > 0 ? (
+                                <>
+                                    <div
+                                        className={
+                                            classes.listFileTotalItems +
+                                            ' fldr-child-count'
+                                        }
+                                        data-chonky-file-id={file?.id ? file.id : ''}
+                                    >
+                                        {file?.childItemCount
+                                            ? file?.childItemCount
+                                            : ``}
+                                    </div>
+                                </>
+                            ) : (
+                                <div
+                                    className={
+                                        classes.listFileTotalItems +
+                                        ' empty-flder-child-count'
+                                    }
+                                    data-chonky-file-id={file?.id ? file.id : ''}
+                                >
+                                    {file?.childItemCount}
+                                </div>
+                            )}
+                            <div className={classes.listFileEntryProperty}>
+                                {file ? (
+                                    fileModDateString ?? <span>—</span>
+                                ) : (
+                                    <TextPlaceholder minLength={5} maxLength={15} />
+                                )}
+                            </div>
+                            <div className={classes.listFileSizeProperty}>
+                                {file ? (
+                                    fileSizeString ?? <span>—</span>
+                                ) : (
+                                    <TextPlaceholder minLength={10} maxLength={20} />
+                                )}
+                            </div>
+                            <div className={classes.listFileShared}>
+                                {/* {file?.isShared ? 'Shared': 'Private'} */}
+                                {file?.isShared
+                                    ? sharedOrPrivate?.sharedText
+                                    : sharedOrPrivate?.privateText}
+                            </div>
+                            {/* {moreToolAction} */}
+                        </div>
                     </>
-                    ) :  <div className={classes.listFileTotalItems+" folder-child-count"} data-chonky-file-id={file?.id ? file.id: ''}>  {file?.childItemCount ? file?.childItemCount :``}</div>
-                }
-                <div className={classes.listFileEntryProperty}>
-                    {file ? (
-                        fileModDateString ?? <span>—</span>
-                    ) : (
-                        <TextPlaceholder minLength={5} maxLength={15} />
-                    )}
-                </div>
-                <div className={classes.listFileSizeProperty}>
-                    {file ? (
-                        fileSizeString ?? <span>—</span>
-                    ) : (
-                        <TextPlaceholder minLength={10} maxLength={20} />
-                    )}
-                </div>
-                <div className={classes.listFileShared}>
-                    {/* {file?.isShared ? 'Shared': 'Private'} */}
-                    {file?.isShared ? sharedOrPrivate?.sharedText: sharedOrPrivate?.privateText}
-                </div>
-                {/* {moreToolAction} */}
-            </div></>}
+                )}
             </>
-            
         );
     }
 );
