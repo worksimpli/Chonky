@@ -20,7 +20,7 @@ interface StyleState {
 }
 
 export const ListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName }) => {
+    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,totalItemsColumn }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
 
@@ -229,8 +229,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                                     </span>
                                 </div>
                             ) : null}
-
-                            {file?.childItemCount && file?.childItemCount > 0 ? (
+                            {!!totalItemsColumn && totalItemsColumn === "allFiles" || totalItemsColumn === "sharedDrive" ? file?.childItemCount && file?.childItemCount > 0 ? (
                                 <>
                                     <div
                                         className={
@@ -254,7 +253,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                                 >
                                     {file?.childItemCount}
                                 </div>
-                            )}
+                            ) : null}
                             <div className={classes.listFileEntryProperty}>
                                 {file ? (
                                     fileModDateString ?? <span>—</span>
