@@ -169,7 +169,9 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                     <>
                         <div
                             className={`${classes.listFileEntry} ${
-                                file?.isChecked ? 'is-checked' : ''
+                                file?.isChecked ? 'is-checked' : ''  
+                            } ${
+                                file?.conversionFailed  ? 'bgconversion-failed' : ''  
                             }`}
                             {...fileEntryHtmlProps}
                         >
@@ -229,7 +231,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                                     </span>
                                 </div>
                             ) : null}
-                            {!!totalItemsColumn && totalItemsColumn === "allFiles" || totalItemsColumn === "sharedDrive" ? file?.childItemCount && file?.childItemCount > 0 ? (
+                            {!!totalItemsColumn && totalItemsColumn != "" ? file?.childItemCount && file?.childItemCount > 0 ? (
                                 <>
                                     <div
                                         className={
