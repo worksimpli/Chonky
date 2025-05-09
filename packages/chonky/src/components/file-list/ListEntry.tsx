@@ -171,7 +171,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                             className={`${classes.listFileEntry} ${
                                 file?.isChecked ? 'is-checked' : ''  
                             } ${
-                                file?.isConversionFailed || file.isTranslationFailed  ? 'bgconversion-failed' : ''  
+                                file?.isConversionFailed !== "" || file.isTranslationFailed !== ""  ? 'bgconversion-failed' : ''  
                             }`}
                             {...fileEntryHtmlProps}
                         >
