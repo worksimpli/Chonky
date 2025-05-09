@@ -12,7 +12,7 @@ import {
 } from './FileEntry-hooks';
 import { FileEntryName } from './FileEntryName';
 import { FileEntryState, useCommonEntryStyles } from './GridEntryPreview';
-import dotsInFiles from "../../util/dotsInFiles";
+import dotsInFiles from '../../util/dotsInFiles';
 
 interface StyleState {
     entryState: FileEntryState;
@@ -20,7 +20,27 @@ interface StyleState {
 }
 
 export const ListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused, dndState,  activeStar, deactivateStar, tags, sharedOrPrivate,moreToolAction,esignStatus,onFileDoubleClickHandler,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,totalItemsColumn }) => {
+    ({
+        file,
+        selected,
+        focused,
+        dndState,
+        activeStar,
+        deactivateStar,
+        tags,
+        sharedOrPrivate,
+        moreToolAction,
+        esignStatus,
+        onFileDoubleClickHandler,
+        conversionInProgress,
+        conversionFailed,
+        conversionCompleted,
+        translateInProgress,
+        translationFailed,
+        multipleSelect,
+        domainName,
+        totalItemsColumn,
+    }) => {
         const entryState: FileEntryState = useFileEntryState(file, selected, focused);
         const dndIconName = useDndIcon(dndState);
 
@@ -169,10 +189,15 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                     <>
                         <div
                             className={`${classes.listFileEntry} ${
-                                file?.isChecked ? 'is-checked' : ''  
-                            } ${
-                                file?.isConversionFailed !== "" || file.isTranslationFailed !== ""  ? 'bgconversion-failed' : ''  
-                            }`}
+                                file?.isChecked ? 'is-checked' : ''
+                            } 
+                            ${
+                                file?.isConversionFailed === true ||
+                                file?.isTranslationFailed === true
+                                    ? 'bgconversion-failed'
+                                    : ''
+                            } 
+                            `}
                             {...fileEntryHtmlProps}
                         >
                             <div className={commonClasses.focusIndicator}></div>
@@ -231,30 +256,34 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                                     </span>
                                 </div>
                             ) : null}
-                            {!!totalItemsColumn && totalItemsColumn != "" ? file?.childItemCount && file?.childItemCount > 0 ? (
-                                <>
+                            {!!totalItemsColumn && totalItemsColumn != '' ? (
+                                file?.childItemCount && file?.childItemCount > 0 ? (
+                                    <>
+                                        <div
+                                            className={
+                                                classes.listFileTotalItems +
+                                                ' fldr-child-count'
+                                            }
+                                            data-chonky-file-id={
+                                                file?.id ? file.id : ''
+                                            }
+                                        >
+                                            {file?.childItemCount
+                                                ? file?.childItemCount
+                                                : ``}
+                                        </div>
+                                    </>
+                                ) : (
                                     <div
                                         className={
                                             classes.listFileTotalItems +
-                                            ' fldr-child-count'
+                                            ' empty-flder-child-count'
                                         }
                                         data-chonky-file-id={file?.id ? file.id : ''}
                                     >
-                                        {file?.childItemCount
-                                            ? file?.childItemCount
-                                            : ``}
+                                        {file?.childItemCount}
                                     </div>
-                                </>
-                            ) : (
-                                <div
-                                    className={
-                                        classes.listFileTotalItems +
-                                        ' empty-flder-child-count'
-                                    }
-                                    data-chonky-file-id={file?.id ? file.id : ''}
-                                >
-                                    {file?.childItemCount}
-                                </div>
+                                )
                             ) : null}
                             <div className={classes.listFileEntryProperty}>
                                 {file ? (
