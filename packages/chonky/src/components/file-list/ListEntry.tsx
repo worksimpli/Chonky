@@ -188,16 +188,11 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                 ) : (
                     <>
                         <div
-                            className={`${classes.listFileEntry} ${
-                                file?.isChecked ? 'is-checked' : ''
-                            } 
-                            ${
-                                file?.isConversionFailed === true ||
-                                file?.isTranslationFailed === true
-                                    ? 'bgconversion-failed'
-                                    : ''
-                            } 
-                            `}
+                            className={`
+        ${classes.listFileEntry} 
+        ${file?.isChecked ? 'is-checked DDDD' : ''} 
+        ${file?.isConversionFailed ? 'bgconversion-failed' : 'bgconversion-success'}
+    `}
                             {...fileEntryHtmlProps}
                         >
                             <div className={commonClasses.focusIndicator}></div>
