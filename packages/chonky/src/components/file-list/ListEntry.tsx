@@ -61,6 +61,7 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
         const DomainEnum = domainName;
         return (
             <>
+                {/* ********************** List view *************************** */}
                 {!file?.isDir ? (
                     <>
                         <span
@@ -69,11 +70,12 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                         >
                             <div
                                 className={`${classes.listFileEntry} ${
-                                    file?.isChecked ? 'is-checked ' : ''
+                                    file?.isChecked ? 'is-checked' : ''
                                 } ${
-                                    file?.isConversionFailed
-                                        ? 'bgconversion-failed UU'
-                                        : 'bgconversion-success UU'
+                                    file?.isConversionFailed ||
+                                    file?.istranslationFailed
+                                        ? 'bgconversion-failed'
+                                        : 'bgconversion-success'
                                 }`}
                                 {...fileEntryHtmlProps}
                             >
@@ -191,10 +193,11 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                     </>
                 ) : (
                     <>
+                        {/* ********************** Folder view *************************** */}
                         <div
                             className={`
         ${classes.listFileEntry} 
-        ${file?.isChecked ? 'is-checked DDDD' : ''} 
+        ${file?.isChecked ? 'is-checked ' : ''} 
         ${file?.isConversionFailed ? 'bgconversion-failed' : 'bgconversion-success'}
     `}
                             {...fileEntryHtmlProps}
