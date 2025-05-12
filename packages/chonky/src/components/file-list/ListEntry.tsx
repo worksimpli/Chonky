@@ -69,7 +69,11 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                         >
                             <div
                                 className={`${classes.listFileEntry} ${
-                                    file?.isChecked ? 'is-checked' : ''
+                                    file?.isChecked ? 'is-checked ' : ''
+                                } ${
+                                    file?.isConversionFailed
+                                        ? 'bgconversion-failed UU'
+                                        : 'bgconversion-success UU'
                                 }`}
                                 {...fileEntryHtmlProps}
                             >
