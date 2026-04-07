@@ -41,6 +41,8 @@ export interface SmartFileEntryProps {
         sharing: string;
     };
     moreToolAction?: React.ReactElement<any, any>;
+    shareAction?: React.ReactElement<any, any>;
+    linkAction?: React.ReactElement<any, any>;
     esignStatus?: React.ReactElement<any, any>;
     onFileDoubleClickHandler?: {
         dblRowobj: AnyFunction;
@@ -75,6 +77,8 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
         sharedOrPrivate,
         listHeader,
         moreToolAction,
+        shareAction,
+        linkAction,
         esignStatus,
         onFileDoubleClickHandler,
         nothingToShowLabel,
@@ -120,6 +124,8 @@ export const SmartFileEntry: React.FC<SmartFileEntryProps> = React.memo(
             listContainerClass,
             listHeader,
             moreToolAction,
+            shareAction,
+            linkAction,
             esignStatus,
             onFileDoubleClickHandler,
             nothingToShowLabel,

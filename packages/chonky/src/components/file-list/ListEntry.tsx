@@ -30,6 +30,8 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
         tags,
         sharedOrPrivate,
         moreToolAction,
+        shareAction,
+        linkAction,
         esignStatus,
         onFileDoubleClickHandler,
         conversionInProgress,
@@ -187,7 +189,15 @@ export const ListEntry: React.FC<FileEntryProps> = React.memo(
                                         ? sharedOrPrivate?.sharedText
                                         : sharedOrPrivate?.privateText}
                                 </div>
-                                {moreToolAction}
+                                <div className='share-action-wrap' onClick={(e) => e.stopPropagation()}>
+                                    {shareAction}
+                                </div>
+                                <div className='link-action-wrap' onClick={(e) => e.stopPropagation()}>
+                                    {linkAction}
+                                </div>
+                                <div className='more-action-wrap' onClick={(e) => e.stopPropagation()}>
+                                    {moreToolAction}
+                                </div>
                             </div>
                         </span>
                     </>

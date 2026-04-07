@@ -15,7 +15,7 @@ import { FileToolbar } from './FileToolbar';
 
 export const FullFileBrowser = React.memo(
     React.forwardRef<FileBrowserHandle, FileBrowserProps>((props, ref) => {
-        const { onScroll, fileListStyle, activeStar = <></>, deactivateStar = <></>, tags = <></>, esignStatus = <></>, listContainerClass, sharedOrPrivate = {sharedText: "", privateText: ""},listHeader = {name:"",location:"",modified:"",sharing:""},moreToolAction=<></>,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress=<></>,conversionFailed=<></>,conversionCompleted=<></>,translateInProgress=<></>,translationFailed=<></>, multipleSelect=<></>,domainName,qwModifiedText,totalItemsColumn} = props;
+        const { onScroll, fileListStyle, activeStar = <></>, deactivateStar = <></>, tags = <></>, esignStatus = <></>, listContainerClass, sharedOrPrivate = {sharedText: "", privateText: ""},listHeader = {name:"",location:"",modified:"",sharing:""},moreToolAction=<></>,shareAction,linkAction,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress=<></>,conversionFailed=<></>,conversionCompleted=<></>,translateInProgress=<></>,translationFailed=<></>, multipleSelect=<></>,domainName,qwModifiedText,totalItemsColumn} = props;
         return (
             <FileBrowser ref={ref} {...props}>
                 <FileNavbar />
@@ -31,6 +31,8 @@ export const FullFileBrowser = React.memo(
                     listContainerClass={listContainerClass}
                     listHeader={listHeader}
                     moreToolAction={moreToolAction}
+                    shareAction={shareAction}
+                    linkAction={linkAction}
                     onFileDoubleClickHandler={onFileDoubleClickHandler}
                     nothingToShowLabel={nothingToShowLabel}
                     conversionInProgress={conversionInProgress}

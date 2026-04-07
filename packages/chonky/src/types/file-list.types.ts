@@ -29,6 +29,8 @@ export interface FileEntryProps {
         sharing:string;
     };
     moreToolAction?: React.ReactElement<any, any>;
+    shareAction?: React.ReactElement<any, any>;
+    linkAction?: React.ReactElement<any, any>;
     esignStatus?: React.ReactElement<any, any>;
     onFileDoubleClickHandler?:{
         dblRowobj: AnyFunction;

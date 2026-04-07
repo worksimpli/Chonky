@@ -41,6 +41,8 @@ export interface FileListProps {
         sharing:string;
     };
     moreToolAction?:  React.ReactElement<any, any>;
+    shareAction?: React.ReactElement<any, any>;
+    linkAction?: React.ReactElement<any, any>;
     esignStatus: React.ReactElement<any, any>;
     onFileDoubleClickHandler?:{
         dblRowobj: AnyFunction;
@@ -76,7 +78,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
     const localClasses = useLocalStyles(styleState);
     const classes = useStyles(viewConfig);
     const headerClasses =useHeaderStyles();
-    const { onScroll, fileListStyle, activeStar, deactivateStar, tags, listContainerClass, sharedOrPrivate,listHeader,moreToolAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText,totalItemsColumn } = props;
+    const { onScroll, fileListStyle, activeStar, deactivateStar, tags, listContainerClass, sharedOrPrivate,listHeader,moreToolAction,shareAction,linkAction,esignStatus,onFileDoubleClickHandler,nothingToShowLabel,conversionInProgress,conversionFailed,conversionCompleted,translateInProgress,translationFailed,multipleSelect,domainName,qwModifiedText,totalItemsColumn } = props;
 
     // In Chonky v0.x, this field was user-configurable. In Chonky v1.x+, we hardcode
     // this to `true` to simplify configuration. Users can just wrap Chonky in their
@@ -132,6 +134,8 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
                                 listContainerClass={listContainerClass}
                                 listHeader={listHeader}
                                 moreToolAction={moreToolAction}
+                                shareAction={shareAction}
+                                linkAction={linkAction}
                                 esignStatus={esignStatus}
                                 onFileDoubleClickHandler={onFileDoubleClickHandler}
                                 nothingToShowLabel={nothingToShowLabel}
@@ -162,7 +166,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
                 );
             }
         },
-        [displayFileIds, viewConfig]
+        [displayFileIds, viewConfig, shareAction, linkAction, moreToolAction]
     );
 
     const ChonkyIcon = useContext(ChonkyIconContext);
